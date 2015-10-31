@@ -10,7 +10,7 @@ public class Player extends Element {
 	
 	private int timer, frame;
 	private boolean moveRight, moveLeft, faceRight, inAir;
-	Image image[] = Sprite.getSprites("/images/person.png", 8, 8, 238, 6, 32, 32);
+	Image image[] = Sprite.getSprites("images/person.png", 8, 8, 238, 6, 32, 32);
 	public static double health = 6;
 	public static int c;
 	
@@ -143,12 +143,10 @@ public class Player extends Element {
 		}
 		if(Main.inventory.gear[1] != -1){
 			g.drawImage(image[Main.inventory.getGarment(Inventory.EQUIP_SHIELD)*14 + frame], getX()-Main.sX, getY()-Main.sY, null);
-			System.out.println(Main.inventory.getGarment(Inventory.EQUIP_SHIELD)*14 + frame);
 		}
 	}
 	
 	public int getFull(){
-		System.out.println(health);
 		return (int) Math.floor(health);
 	}
 	public boolean hasHalf(){

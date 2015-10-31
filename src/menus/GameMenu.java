@@ -1,27 +1,51 @@
 package menus;
 
-import java.awt.Transparency;
+import java.awt.event.KeyEvent;
 
-import org.newdawn.slick.Color;
+import org.lwjgl.input.Keyboard;
+import org.lwjgl.input.Mouse;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 
 import images.Sprite;
 import main.Main;
-import main.World;
+import objects.Inventory;
 import objects.Item;
+import objects.Simple;
 
 public class GameMenu implements Menu {
 
-	public static Image image = World.makeWorldImage(), heart[];
-	public static boolean on;
-	
-	public void reset(){
-		
-	}
+	public static Image heart[];
 	
 	public GameMenu(){
-		heart = Sprite.getSprites("/images/heart.png", 0, 0, 8, 8, 2, 2, 32, 32);
+		heart = Sprite.getSprites("images/heart.png", 8, 8, 2, 2, 32, 32);
+	}
+	
+	public void update() {
+		Main.player.reset();
+		if(Keyboard.isKeyDown(Keyboard.KEY_D)){
+			Main.player.moveRight();
+		}if(Keyboard.isKeyDown(Keyboard.KEY_A)){
+			Main.player.moveLeft();
+		}
+		Main.player.move();
+		if(Keyboard.isKeyDown(Keyboard.KEY_W)){
+			Main.player.jump();
+		}
+//		if(released && mousePressed(Mouse.BUTTON_1)){
+//			int x = (mouseX()+sX)/32, y = (mouseY()+sY)/32;
+//			if(Simple.pointRect(mouseX(), mouseY(), 354, 10, 36, 36)){
+//				menu = MENU_PAUSE;
+//				setMenu(new PauseMenu());
+//			}else if(state[x][y] == 33){
+//				for(int i = 0; i < r.nextInt(5)+2; i++){
+//					objects.add(new Item(x*32, y*32, Inventory.chestSpawn()));
+//				}
+//				state[x][y] = 32;
+//			}
+//			released = false;
+//		}
+		Main.scroll();
 	}
 	
 	public void render(Graphics g){
@@ -44,7 +68,7 @@ public class GameMenu implements Menu {
 		}
 		Main.player.draw(g);
 		for(int i = 0; i < Main.enemies.size(); i++){
-			Main.enemies.get(i).draw(g);
+			Main.enemies.get(i).render(g);
 			if(Main.enemies.get(i).isDead()){
 				Main.enemies.remove(i);
 				break;
@@ -60,38 +84,35 @@ public class GameMenu implements Menu {
 		if(Main.player.hasHalf()){
 			g.drawImage(heart[1], x, 10, null);
 		}
-		if(on){
-			g.drawImage(image, 0, 0, null);
-			System.out.println(on);
-		}
 	}
 	
 	public void drawLighting(Graphics g){
-		int x, y, trans, pV1 = 100;
-		g.setColor(new Color(Main.player.getRed(), 0, 0));
-		for(int i = 0; i < 729; i++){
-			x = (i%27)*16-Main.sX%16; y = (i/27)*16-Main.sY%16-16;
-			trans = (int) Tools.getDistance(x+Main.sX, y+Main.sY, Main.player.getX()+14, Main.player.getY()+16);
-			if(trans/1.5 <= 100){
-				Transparency.set(g, trans/1.5);
-				pV1 = (int) (trans/1.5);
-			}else{
-				Transparency.set(g, 100);
-				pV1 = 100;
-			}
-			for(int j = 0; j < Main.enemies.size(); j++){
-				if(Main.enemies.get(j).getLit() != 100){
-					int eX = Main.enemies.get(j).getX()+16, eY = Main.enemies.get(j).getY()+16;
-					trans = (int) Tools.getDistance(x+Main.sX, y+Main.sY, eX, eY);
-					if(pV1 > trans/Main.enemies.get(j).getLit() && trans/Main.enemies.get(j).getLit() < 100){
-						Transparency.set(g, trans/Main.enemies.get(j).getLit());
-						pV1 = (int) (trans/Main.enemies.get(j).getLit());
-					}
-				}
-			}
-			g.fillRect(x, y, 16, 16);
-		}
-		Transparency.reset(g);
+		// this will all get reworked later under slick
+//		int x, y, trans, pV1 = 100;
+//		g.setColor(new Color(Main.player.getRed(), 0, 0));
+//		for(int i = 0; i < 729; i++){
+//			x = (i%27)*16-Main.sX%16; y = (i/27)*16-Main.sY%16-16;
+//			trans = (int) Math.hypot(x+Main.sX-Main.player.getX()-14, y+Main.sY-Main.player.getY()-16);
+//			if(trans/1.5 <= 100){
+//				Transparency.set(g, trans/1.5);
+//				pV1 = (int) (trans/1.5);
+//			}else{
+//				Transparency.set(g, 100);
+//				pV1 = 100;
+//			}
+//			for(int j = 0; j < Main.enemies.size(); j++){
+//				if(Main.enemies.get(j).getLit() != 100){
+//					int eX = Main.enemies.get(j).getX()+16, eY = Main.enemies.get(j).getY()+16;
+//					trans = (int) Tools.getDistance(x+Main.sX, y+Main.sY, eX, eY);
+//					if(pV1 > trans/Main.enemies.get(j).getLit() && trans/Main.enemies.get(j).getLit() < 100){
+//						Transparency.set(g, trans/Main.enemies.get(j).getLit());
+//						pV1 = (int) (trans/Main.enemies.get(j).getLit());
+//					}
+//				}
+//			}
+//			g.fillRect(x, y, 16, 16);
+//		}
+//		Transparency.reset(g);
 	}
 	
 }

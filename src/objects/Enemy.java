@@ -1,6 +1,6 @@
 package objects;
 
-import java.awt.Graphics;
+import org.newdawn.slick.Graphics;
 
 public abstract class Enemy extends Element {
 	
@@ -14,7 +14,7 @@ public abstract class Enemy extends Element {
 	}
 	
 	public abstract void update();
-	public abstract void draw(Graphics g);
+	public abstract void render(Graphics g);
 	
 	public abstract void hurt();
 	
