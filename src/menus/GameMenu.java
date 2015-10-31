@@ -16,7 +16,7 @@ import com.henagongames.tools.Particle;
 import com.henagongames.tools.Tools;
 
 public class GameMenu implements Menu{
-
+	
 	public static Image image = World.makeWorldImage(), heart[];
 	public static boolean on;
 	
