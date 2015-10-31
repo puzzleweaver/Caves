@@ -1,16 +1,9 @@
 package objects;
 
 import java.awt.Graphics;
-import java.awt.Image;
 
-import main.Main;
-
-import com.henagongames.game.Element;
-import com.henagongames.image.Sprite;
-import com.henagongames.tools.Tools;
-
-public abstract class Enemy extends Element{
-
+public abstract class Enemy extends Element {
+	
 	public static boolean dead;
 	public static final int ENEMY_SKULL = 0, ENEMY_GOLEM = 1, ENEMY_FIGHTER = 2;
 	protected int timer;

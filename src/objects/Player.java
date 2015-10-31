@@ -1,14 +1,5 @@
 package objects;
 
-import java.awt.Graphics;
-
-import javax.swing.text.html.parser.Element;
-
-import org.newdawn.slick.Image;
-
-import images.Sprite;
-import main.Main;
-
 public class Player extends Element {
 
 	private int timer, frame;
@@ -170,6 +161,13 @@ public class Player extends Element {
 	}
 	public int getRed(){
 		return c;
+	}
+	
+	public int getX() {
+		return x;
+	}
+	public int getY() {
+		return y;
 	}
 	
 }
