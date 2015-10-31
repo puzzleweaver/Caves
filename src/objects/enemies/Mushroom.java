@@ -10,8 +10,8 @@ public class Mushroom extends Enemy{
 
 	public Mushroom(int x, int y) {
 		super(x, y);
-		x /= 32; x *= 32;
-		y /= 32; y *= 32;
+		x = (x/32)*32;
+		y = (y/32)*32;
 	}
 
 	public void update() {

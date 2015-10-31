@@ -33,14 +33,10 @@ public class Main extends BasicGame {
 	public static ArrayList<Item> objects = new ArrayList<Item>();
 	public static ArrayList<Enemy> enemies  = new ArrayList<Enemy>();
 	public static final int MENU_GAME = 0, MENU_PAUSE = 1, MENU_MAIN = 2;
-	public static int w, h;
+	public static int w = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth(),
+			h = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight();
 	
 	public static void main(String[] args) {
-		try {
-			w = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth();
-			h = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight();
-			System.out.println(w + ", " + h);
-		}catch(Exception e) {}
 		try {
 			AppGameContainer app = new AppGameContainer(new Main());
 			app.setDisplayMode(w, h, true);
