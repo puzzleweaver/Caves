@@ -1,5 +1,6 @@
 package main;
 
+import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -8,7 +9,6 @@ import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 import images.Sprite;
@@ -19,6 +19,9 @@ import objects.Enemy;
 import objects.Inventory;
 import objects.Item;
 import objects.Player;
+import objects.enemies.Burr;
+import objects.enemies.Golem;
+import objects.enemies.Skull;
 
 public class Main extends BasicGame {
 	
@@ -30,10 +33,15 @@ public class Main extends BasicGame {
 	public static ArrayList<Item> objects = new ArrayList<Item>();
 	public static ArrayList<Enemy> enemies  = new ArrayList<Enemy>();
 	public static final int MENU_GAME = 0, MENU_PAUSE = 1, MENU_MAIN = 2;
-	public static int w = 1920, h = 1080;
+	public static int w, h;
 	
 	public static void main(String[] args) {
-		try{
+		try {
+			w = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth();
+			h = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight();
+			System.out.println(w + ", " + h);
+		}catch(Exception e) {}
+		try {
 			AppGameContainer app = new AppGameContainer(new Main());
 			app.setDisplayMode(w, h, true);
 			app.setMinimumLogicUpdateInterval(15);
@@ -55,9 +63,9 @@ public class Main extends BasicGame {
 		pauseMenu = new PauseMenu();
 		menu = gameMenu;
 		World.loadWorld();
-//		enemies.add(new Skull(player.getX(), player.getY()));
-//		enemies.add(new Burr(player.getX(), player.getY()+288));
-//		enemies.add(new Golem(player.getX(), player.getY()+200));
+		enemies.add(new Skull(player.getX(), player.getY()));
+		enemies.add(new Burr(player.getX(), player.getY()+288));
+		enemies.add(new Golem(player.getX(), player.getY()+200));
 	}
 	
 	public void update(GameContainer arg0, int arg1) throws SlickException {

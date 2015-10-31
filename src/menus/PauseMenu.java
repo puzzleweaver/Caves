@@ -1,6 +1,5 @@
 package menus;
 
-import org.lwjgl.input.Mouse;
 import org.newdawn.slick.Graphics;
 
 import images.Sprite;
@@ -16,7 +15,7 @@ public class PauseMenu implements Menu {
 	
 	public void update() {
 		if(Input.mouseButtonPressed(0)){
-			if(Simple.pointRect(Mouse.getX(), Mouse.getY(), 20, 20, 152, 48)){
+			if(Simple.pointRect(Input.mouseX(), Input.mouseY(), 20, 20, 152, 48)){
 				Main.menu = Main.gameMenu;
 				PauseMenu.selected = -1;
 				Main.menu = Main.gameMenu;

@@ -11,6 +11,8 @@ public class World {
 	
 	public static void loadWorld(){
 		// let there be light
+		
+		// carve out cave system
 		int x = w/2, y = h/2;
 		for(int i = 0; i < 10000; i++) {
 			x += Main.r.nextInt(3)-1;
