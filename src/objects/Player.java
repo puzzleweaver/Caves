@@ -1,28 +1,24 @@
 package objects;
 
-import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Image;
 
+import javax.swing.text.html.parser.Element;
+
+import org.newdawn.slick.Image;
+
+import images.Sprite;
 import main.Main;
 
-import com.henagongames.game.Element;
-import com.henagongames.geometry.Simple;
-import com.henagongames.image.Sprite;
-import com.henagongames.tools.Tools;
-
-public class Player extends Element{
+public class Player extends Element {
 
 	private int timer, frame;
 	private boolean moveRight, moveLeft, faceRight, inAir;
-	Image image[] = Sprite.getSprites(getClass().getResource("/images/person.png"), 0, 0, 8, 8, 238, 6),
-			swing[] = Sprite.getSprites(getClass().getResource("/images/swing.png"), 0, 0, 8, 8, 1, 1);
+	Image image[] = Sprite.getSprites("/images/person.png", 8, 8, 238, 6, 32, 32);
 	public static double health = 6;
 	public static int c;
 	
 	public Player(int x, int y) {
 		super(x, y);
-		image = Sprite.resize(image, 32, 32, Sprite.EDIT_COARSE);
 	}
 	
 	public void reset(){

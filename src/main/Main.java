@@ -1,24 +1,23 @@
 package main;
 
-import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 import java.util.ArrayList;
 import java.util.Random;
 
-import objects.*;
+import org.lwjgl.input.Mouse;
+import org.newdawn.slick.Image;
 
-import com.henagongames.game.*;
-import com.henagongames.geometry.Simple;
-import com.henagongames.image.Sprite;
-import com.henagongames.input.Mouse;
-import com.henagongames.tools.Tools;
+import images.Sprite;
+import menus.GameMenu;
+import menus.PauseMenu;
+import objects.Enemy;
+import objects.Inventory;
+import objects.Item;
+import objects.Player;
 
-import objects.enemies.*;
-import menus.*;
-
-public class Main extends GameApplet implements MouseWheelListener{
+public class Main extends GameApplet implements MouseWheelListener {
 
 	public static Inventory inventory = new Inventory();
 	public static int state[][] = new int[1000][2000];
@@ -46,14 +45,10 @@ public class Main extends GameApplet implements MouseWheelListener{
 		enemies.add(new Golem(player.getX(), player.getY()+200));
 	}
 	public void loadImages(){
-		boxImage = Sprite.getSprites(getClass().getResource("/images/box.png"), 0, 0, 12, 12, 2, 2);
-		boxImage = Sprite.resize(boxImage, 36, 36, Sprite.EDIT_COARSE);
-		items = Sprite.getSprites(getClass().getResource("/images/items.png"), 0, 0, 8, 8, 35, 6);
-		items = Sprite.resize(items, 32, 32, Sprite.EDIT_COARSE);
-		textures = Sprite.getSprites(getClass().getResource("/images/oWImages.png"), 0, 0, 8, 8, 38, 8);
-		textures = Sprite.resize(textures, 32, 32, Sprite.EDIT_COARSE);
-		parts = Sprite.getSprites(getClass().getResource("/images/parts.png"), 0, 0, 4, 4, parts.length, 4);
-		parts = Sprite.resize(parts, 8, 8, Sprite.EDIT_COARSE);
+		boxImage = Sprite.getSprites("/images/box.png", 12, 12, 2, 2, 36, 36);
+		items = Sprite.getSprites("/images/items.png", 8, 8, 35, 6, 32, 32);
+		textures = Sprite.getSprites("/images/oWImages.png", 8, 8, 38, 8, 32, 32);
+		parts = Sprite.getSprites("/images/parts.png", 4, 4, parts.length, 4, 8, 8);
 	}
 
 	protected void gameLoop(){
