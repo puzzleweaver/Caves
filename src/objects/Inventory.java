@@ -1,5 +1,6 @@
 package objects;
 
+import images.Sprite;
 import main.Main;
 import menus.PauseMenu;
 
@@ -163,10 +164,10 @@ public class Inventory {
 	}
 	
 	public static int chestSpawn(){
-		return Main.r.nextInt(Main.items.length);
+		return Main.r.nextInt(Sprite.items.length);
 	}
 	public static int potSpawn(){
-		return Main.r.nextInt(Main.items.length);
+		return Main.r.nextInt(Sprite.items.length);
 	}
 	
 }

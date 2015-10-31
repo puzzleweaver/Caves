@@ -1,21 +1,19 @@
 package objects;
 
 
-import main.Main;
-
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
+
+import images.Sprite;
+import main.Main;
 
 public class Item extends Element {
 	
 	int timer = 0, ID = 0;
-	private Image image;
 	private boolean done, caught;
 	
 	public Item(int x, int y, int ID) {
 		super(x, y);
 		this.ID = ID;
-		image = Main.items[ID];
 		vs = -5; hs = Main.r.nextInt(9)-4;
 	}
 	
@@ -77,7 +75,7 @@ public class Item extends Element {
 	}
 	
 	public void draw(Graphics g){
-		g.drawImage(image, getX() - Main.sX, getY() - Main.sY);
+		g.drawImage(Sprite.items[ID], getX() - Main.sX, getY() - Main.sY);
 	}
 	
 }

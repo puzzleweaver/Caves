@@ -23,8 +23,6 @@ import objects.Player;
 public class Main extends BasicGame {
 	
 	public static Inventory inventory = new Inventory();
-	public static Image textures[] = new Image[36], parts[] = new Image[6],
-			items[], boxImage[];
 	public static int sX, sY;
 	public static Menu menu, gameMenu, pauseMenu;
 	public static Random r = new Random();
@@ -51,7 +49,7 @@ public class Main extends BasicGame {
 	}
 	
 	public void init(GameContainer arg0) throws SlickException {
-		loadImages();
+		Sprite.init();
 		player = new Player(400*32, 400*32);
 		gameMenu = new GameMenu();
 		pauseMenu = new PauseMenu();
@@ -62,13 +60,6 @@ public class Main extends BasicGame {
 //		enemies.add(new Golem(player.getX(), player.getY()+200));
 	}
 	
-	public void loadImages(){
-		boxImage = Sprite.getSprites("images/box.png", 12, 12, 2, 2, 36, 36);
-		items = Sprite.getSprites("images/items.png", 8, 8, 35, 6, 32, 32);
-		textures = Sprite.getSprites("images/oWImages.png", 8, 8, 38, 8, 32, 32);
-		parts = Sprite.getSprites("images/parts.png", 4, 4, parts.length, 4, 8, 8);
-	}
-
 	public void update(GameContainer arg0, int arg1) throws SlickException {
 		if(Keyboard.isKeyDown(Keyboard.KEY_ESCAPE))
 			System.exit(1);

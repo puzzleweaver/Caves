@@ -10,7 +10,6 @@ public class Player extends Element {
 	
 	private int timer, frame;
 	private boolean moveRight, moveLeft, faceRight, inAir;
-	Image image[] = Sprite.getSprites("images/person.png", 8, 8, 238, 6, 32, 32);
 	public static double health = 6;
 	public static int c;
 	
@@ -131,17 +130,17 @@ public class Player extends Element {
 		faceRight = true;
 	}
 	
-	public void draw(Graphics g){
+	public void render(Graphics g){
 		changeFrame();
-		g.drawImage(image[frame], getX()-Main.sX, getY()-Main.sY, null);
+		g.drawImage(Sprite.player[frame], getX()-Main.sX, getY()-Main.sY, null);
 		if(Main.inventory.gear[0] != -1){
-			g.drawImage(image[Main.inventory.getGarment(Inventory.EQUIP_HEAD)*14 + frame], getX()-Main.sX, getY()-Main.sY, null);
+			g.drawImage(Sprite.player[Main.inventory.getGarment(Inventory.EQUIP_HEAD)*14 + frame], getX()-Main.sX, getY()-Main.sY, null);
 		}if(Main.inventory.gear[2] != -1){
-			g.drawImage(image[Main.inventory.getGarment(Inventory.EQUIP_TORSO)*14 + frame], getX()-Main.sX, getY()-Main.sY, null);
+			g.drawImage(Sprite.player[Main.inventory.getGarment(Inventory.EQUIP_TORSO)*14 + frame], getX()-Main.sX, getY()-Main.sY, null);
 		}if(Main.inventory.gear[3] != -1){
-			g.drawImage(image[Main.inventory.getGarment(Inventory.EQUIP_FEET)*14 + frame], getX()-Main.sX, getY()-Main.sY, null);
+			g.drawImage(Sprite.player[Main.inventory.getGarment(Inventory.EQUIP_FEET)*14 + frame], getX()-Main.sX, getY()-Main.sY, null);
 		}if(Main.inventory.gear[1] != -1){
-			g.drawImage(image[Main.inventory.getGarment(Inventory.EQUIP_SHIELD)*14 + frame], getX()-Main.sX, getY()-Main.sY, null);
+			g.drawImage(Sprite.player[Main.inventory.getGarment(Inventory.EQUIP_SHIELD)*14 + frame], getX()-Main.sX, getY()-Main.sY, null);
 		}
 	}
 	
