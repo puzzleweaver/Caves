@@ -9,14 +9,13 @@ import org.newdawn.slick.svg.Gradient;
 import org.newdawn.slick.svg.RadialGradientFill;
 
 import images.Sprite;
+import main.Input;
 import main.Main;
 import objects.Item;
 import objects.Simple;
 
 public class GameMenu implements Menu {
 
-	public boolean wasButtonDown;
-	
 	public void update() {
 		Main.player.reset();
 		if(Keyboard.isKeyDown(Keyboard.KEY_D)){
@@ -28,11 +27,9 @@ public class GameMenu implements Menu {
 		if(Keyboard.isKeyDown(Keyboard.KEY_W)){
 			Main.player.jump();
 		}
-		if(wasButtonDown && !Mouse.isButtonDown(0)) wasButtonDown = false;
-		if(!wasButtonDown && Mouse.isButtonDown(0)){
-			wasButtonDown = true;
-			int x = (Mouse.getX()+Main.sX)/32, y = (Mouse.getY()+Main.sY)/32;
-			if(Simple.pointRect(Mouse.getX(), Mouse.getY(), 100, 100, 100, 100)){
+		if(Input.mouseButtonPressed(0)){
+			int x = (Input.mouseX()+Main.sX)/32, y = (Input.mouseY()+Main.sY)/32;
+			if(Simple.pointRect(Input.mouseX(), Input.mouseY(), 354, 10, 36, 36)){
 				Main.menu = Main.pauseMenu;
 //			}else if(state[x][y] == 33){
 //				for(int i = 0; i < r.nextInt(5)+2; i++){

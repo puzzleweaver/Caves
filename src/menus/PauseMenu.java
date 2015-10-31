@@ -2,11 +2,10 @@ package menus;
 
 import org.lwjgl.input.Mouse;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
 
 import images.Sprite;
+import main.Input;
 import main.Main;
-import objects.Inventory;
 import objects.Simple;
 
 public class PauseMenu implements Menu {
@@ -15,22 +14,15 @@ public class PauseMenu implements Menu {
 	
 	public PauseMenu() {}
 	
-	boolean wasButtonDown;
-	
 	public void update() {
-		if(PauseMenu.sY + Mouse.getDWheel() >= 0 && PauseMenu.sY + Mouse.getDWheel() <= 568){
-			PauseMenu.sY += Mouse.getDWheel();
-		}
-		if(!Mouse.isButtonDown(0)) wasButtonDown = false;
-		if(Mouse.isButtonDown(0) && !wasButtonDown){
-			wasButtonDown = true;
+		if(Input.mouseButtonPressed(0)){
 			if(Simple.pointRect(Mouse.getX(), Mouse.getY(), 20, 20, 152, 48)){
 				Main.menu = Main.gameMenu;
 				PauseMenu.selected = -1;
 				Main.menu = Main.gameMenu;
 			}else{
 				for(int i = 0; i < 98; i++){
-					if(Simple.pointRect(Mouse.getX(), Mouse.getY()+PauseMenu.sY, 28 + (i%7)*52, 80 + (i/7)*52, 48, 48)){
+					if(Simple.pointRect(Input.mouseX(), Input.mouseY()+PauseMenu.sY, 28 + (i%7)*52, 80 + (i/7)*52, 48, 48)){
 						if(PauseMenu.selected == -1){
 							PauseMenu.selected = i;
 						}else{
@@ -41,17 +33,17 @@ public class PauseMenu implements Menu {
 					}
 				}
 				if(PauseMenu.selected != -1){
-					if(Simple.pointRect(Mouse.getX(), Mouse.getY()+PauseMenu.sY, 176, 800, 48, 48)){
+					if(Simple.pointRect(Input.mouseX(), Input.mouseY()+PauseMenu.sY, 176, 800, 48, 48)){
 						Main.inventory.equip(Main.inventory.EQUIP_HEAD, Main.inventory.item[PauseMenu.selected]);
-					}else if(Simple.pointRect(Mouse.getX(), Mouse.getY()+PauseMenu.sY, 176, 852, 48, 48)){
+					}else if(Simple.pointRect(Input.mouseX(), Input.mouseY()+PauseMenu.sY, 176, 852, 48, 48)){
 						Main.inventory.equip(Main.inventory.EQUIP_TORSO, Main.inventory.item[PauseMenu.selected]);
-					}else if(Simple.pointRect(Mouse.getX(), Mouse.getY()+PauseMenu.sY, 124, 852, 48, 48)){
+					}else if(Simple.pointRect(Input.mouseX(), Input.mouseY()+PauseMenu.sY, 124, 852, 48, 48)){
 						Main.inventory.equip(Main.inventory.EQUIP_SHIELD, Main.inventory.item[PauseMenu.selected]);
-					}else if(Simple.pointRect(Mouse.getX(), Mouse.getY()+PauseMenu.sY, 228, 852, 48, 48)){
+					}else if(Simple.pointRect(Input.mouseX(), Input.mouseY()+PauseMenu.sY, 228, 852, 48, 48)){
 						Main.inventory.equip(Main.inventory.EQUIP_MELEE, Main.inventory.item[PauseMenu.selected]);
-					}else if(Simple.pointRect(Mouse.getX(), Mouse.getY()+PauseMenu.sY, 176, 904, 48, 48)){
+					}else if(Simple.pointRect(Input.mouseX(), Input.mouseY()+PauseMenu.sY, 176, 904, 48, 48)){
 						Main.inventory.equip(Main.inventory.EQUIP_FEET, Main.inventory.item[PauseMenu.selected]);
-					}else if(Simple.pointRect(Mouse.getX(), Mouse.getY()+PauseMenu.sY, 176, 20, 48, 48)){
+					}else if(Simple.pointRect(Input.mouseX(), Input.mouseY()+PauseMenu.sY, 176, 20, 48, 48)){
 						Main.inventory.trash(PauseMenu.selected);
 					}
 				}
