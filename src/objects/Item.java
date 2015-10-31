@@ -1,12 +1,13 @@
 package objects;
 
-import java.awt.Graphics;
-import java.awt.Image;
 
 import main.Main;
 
-public class Item extends Element {
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 
+public class Item extends Element {
+	
 	int timer = 0, ID = 0;
 	private Image image;
 	private boolean done, caught;
@@ -76,7 +77,7 @@ public class Item extends Element {
 	}
 	
 	public void draw(Graphics g){
-		g.drawImage(image, getX() - Main.sX, getY() - Main.sY, null);
+		g.drawImage(image, getX() - Main.sX, getY() - Main.sY);
 	}
 	
 }

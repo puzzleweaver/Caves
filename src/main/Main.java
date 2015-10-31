@@ -18,7 +18,7 @@ import objects.Item;
 import objects.Player;
 
 public class Main extends GameApplet implements MouseWheelListener {
-
+	
 	public static Inventory inventory = new Inventory();
 	public static int state[][] = new int[1000][2000];
 	public static Image textures[] = new Image[36], parts[] = new Image[6],

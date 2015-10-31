@@ -1,5 +1,11 @@
 package objects;
 
+import images.Sprite;
+import main.Main;
+
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
+
 public class Player extends Element {
 
 	private int timer, frame;
@@ -161,13 +167,6 @@ public class Player extends Element {
 	}
 	public int getRed(){
 		return c;
-	}
-	
-	public int getX() {
-		return x;
-	}
-	public int getY() {
-		return y;
 	}
 	
 }
