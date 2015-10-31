@@ -20,6 +20,8 @@ public class GameMenu implements Menu {
 	public GameMenu(){
 		heart = Sprite.getSprites("images/heart.png", 8, 8, 2, 2, 32, 32);
 	}
+
+	public boolean wasButtonDown;
 	
 	public void update() {
 		Main.player.reset();
@@ -32,27 +34,27 @@ public class GameMenu implements Menu {
 		if(Keyboard.isKeyDown(Keyboard.KEY_W)){
 			Main.player.jump();
 		}
-//		if(released && mousePressed(Mouse.BUTTON_1)){
-//			int x = (mouseX()+sX)/32, y = (mouseY()+sY)/32;
-//			if(Simple.pointRect(mouseX(), mouseY(), 354, 10, 36, 36)){
-//				menu = MENU_PAUSE;
-//				setMenu(new PauseMenu());
+		if(wasButtonDown && !Mouse.isButtonDown(0)) wasButtonDown = false;
+		if(!wasButtonDown && Mouse.isButtonDown(0)){
+			wasButtonDown = true;
+			int x = (Mouse.getX()+Main.sX)/32, y = (Mouse.getY()+Main.sY)/32;
+			if(Simple.pointRect(Mouse.getX(), Mouse.getY(), 100, 100, 100, 100)){
+				Main.menu = Main.pauseMenu;
 //			}else if(state[x][y] == 33){
 //				for(int i = 0; i < r.nextInt(5)+2; i++){
 //					objects.add(new Item(x*32, y*32, Inventory.chestSpawn()));
 //				}
 //				state[x][y] = 32;
-//			}
-//			released = false;
-//		}
+			}
+		}
 		Main.scroll();
 	}
 	
 	public void render(Graphics g){
-		for(int i = 0; i < 250; i++){
-			g.drawImage(Main.textures[Main.getStateAt(Main.player.getX()/32, Main.player.getY()/32, 15, i)],
-					Main.getStateX(Main.player.getX()/32, Main.player.getY()/32, 15, i)*32-Main.sX,
-					Main.getStateY(Main.player.getX()/32, Main.player.getY()/32, 15, i)*32-Main.sY, null);
+		for(int i = 0; i < Main.w*Main.h/32/16; i++){
+			g.drawImage(Main.textures[Main.getStateAt(Main.player.getX()/32, Main.player.getY()/32, Main.w/32, i)],
+					Main.getStateX(Main.player.getX()/32, Main.player.getY()/32, Main.w/32, i)*32-Main.sX,
+					Main.getStateY(Main.player.getX()/32, Main.player.getY()/32, Main.w/32, i)*32-Main.sY, null);
 		}
 		for(int i = 0; i < Main.objects.size() && i >= 0; i++){
 			Item d = Main.objects.get(i);

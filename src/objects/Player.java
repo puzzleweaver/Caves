@@ -140,8 +140,7 @@ public class Player extends Element {
 			g.drawImage(image[Main.inventory.getGarment(Inventory.EQUIP_TORSO)*14 + frame], getX()-Main.sX, getY()-Main.sY, null);
 		}if(Main.inventory.gear[3] != -1){
 			g.drawImage(image[Main.inventory.getGarment(Inventory.EQUIP_FEET)*14 + frame], getX()-Main.sX, getY()-Main.sY, null);
-		}
-		if(Main.inventory.gear[1] != -1){
+		}if(Main.inventory.gear[1] != -1){
 			g.drawImage(image[Main.inventory.getGarment(Inventory.EQUIP_SHIELD)*14 + frame], getX()-Main.sX, getY()-Main.sY, null);
 		}
 	}

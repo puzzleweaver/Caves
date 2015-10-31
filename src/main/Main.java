@@ -32,11 +32,12 @@ public class Main extends BasicGame {
 	public static ArrayList<Item> objects = new ArrayList<Item>();
 	public static ArrayList<Enemy> enemies  = new ArrayList<Enemy>();
 	public static final int MENU_GAME = 0, MENU_PAUSE = 1, MENU_MAIN = 2;
-
+	public static int w = 1920, h = 1080;
+	
 	public static void main(String[] args) {
 		try{
 			AppGameContainer app = new AppGameContainer(new Main());
-			app.setDisplayMode(1920, 1080, true);
+			app.setDisplayMode(w, h, true);
 			app.setMinimumLogicUpdateInterval(15);
 			//nothing after app.start() runs
 			app.start();
@@ -99,15 +100,15 @@ public class Main extends BasicGame {
 	}
 	
 	public static void scroll(){
-		if(player.getX()+16-sX >= 200){
-			sX = player.getX()+16-200;
-		}else if(player.getX()+16-sX <= 200){
-			sX = player.getX()+16-200;
+		if(player.getX()+16-sX >= w/2){
+			sX = player.getX()+16-w/2;
+		}else if(player.getX()+16-sX <= w/2){
+			sX = player.getX()+16-w/2;
 		}
-		if(player.getY()+16-sY >= 200){
-			sY = player.getY()+16-200;
-		}else if(player.getY()+16-sY <= 200){
-			sY = player.getY()+16-200;
+		if(player.getY()+16-sY >= h/2){
+			sY = player.getY()+16-h/2;
+		}else if(player.getY()+16-sY <= h/2){
+			sY = player.getY()+16-h/2;
 		}
 	}
 	
