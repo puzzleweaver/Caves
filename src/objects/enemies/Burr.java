@@ -1,7 +1,5 @@
 package objects.enemies;
 
-import java.awt.Image;
-
 import org.newdawn.slick.Graphics;
 
 import images.Sprite;
@@ -12,7 +10,6 @@ import objects.Simple;
 public class Burr extends Enemy {
 
 	private boolean right, vertical;
-	private Image image[];
 	
 	public Burr(int x, int y) {
 		super(x, y);
@@ -67,7 +64,7 @@ public class Burr extends Enemy {
 		if(timer == 12){
 			timer = 0;
 		}
-		g.drawImage(Sprite.burrImage[timer/6], getX()-Main.sX, getY()-Main.sY);
+		g.drawImage(Sprite.enemies[timer/6], getX()-Main.sX, getY()-Main.sY);
 	}
 
 	public double getLit() {

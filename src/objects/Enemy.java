@@ -10,7 +10,6 @@ public abstract class Enemy extends Element {
 	
 	public Enemy(int x, int y) {
 		super(x, y);
-		loadImage();
 	}
 	
 	public abstract void update();
@@ -18,7 +17,6 @@ public abstract class Enemy extends Element {
 	
 	public abstract void hurt();
 	
-	public abstract void loadImage();
 	public abstract double getLit();
 	
 	public boolean isDead(){

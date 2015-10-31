@@ -18,7 +18,7 @@ public class Sprite {
 		items = Sprite.getSprites("images/items.png", 8, 8, 35, 6, 32, 32);
 		textures = Sprite.getSprites("images/oWImages.png", 8, 8, 38, 8, 32, 32);
 		particles = Sprite.getSprites("images/parts.png", 4, 4, 6, 4, 8, 8);
-		enemies = Sprite.getSprites("/images/enemies.png", 8, 8, 48, 8, 32, 32);
+		enemies = Sprite.getSprites("images/enemies.png", 8, 8, 48, 8, 32, 32);
 	}
 	
 	private static Image[] getSprites(String ref, int w, int h, int numSprites, int perRow, int nw, int nh) {

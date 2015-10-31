@@ -1,19 +1,16 @@
 package objects.enemies;
 
-import java.awt.Graphics;
-import java.awt.Image;
+import org.newdawn.slick.Graphics;
 
-import objects.Enemy;
+import images.Sprite;
 import main.Main;
-
-import com.henagongames.geometry.Simple;
-import com.henagongames.image.Sprite;
+import objects.Enemy;
+import objects.Simple;
 
 public class Golem extends Enemy{
 
 	private boolean right;
-	private Image image[];
-	
+
 	public Golem(int x, int y) {
 		super(x, y);
 	}
@@ -61,25 +58,19 @@ public class Golem extends Enemy{
 		}
 	}
 
-	public void draw(Graphics g) {
+	public void render(Graphics g) {
 		update();
 		timer++;
 		if(timer == 32){
 			timer = 0;
 		}
 		if(right){
-			g.drawImage(image[timer/8], getX()-Main.sX, getY()-Main.sY, null);
+			g.drawImage(Sprite.enemies[timer/8], getX()-Main.sX, getY()-Main.sY, null);
 		}else{
-			g.drawImage(image[4+timer/8], getX()-Main.sX, getY()-Main.sY, null);
+			g.drawImage(Sprite.enemies[4+timer/8], getX()-Main.sX, getY()-Main.sY, null);
 		}
 	}
 
-	public void loadImage() {
-		image = Sprite.getSprites(getClass().getResource("/images/enemies.png"), 0, 8, 8, 8, 8, 8);
-		image = Sprite.resize(image, 32, 32, Sprite.EDIT_COARSE);
-	}
-
-	
 	public double getLit() {
 		return 100;
 	}
@@ -87,5 +78,5 @@ public class Golem extends Enemy{
 	public void hurt() {
 		
 	}
-	
+
 }
