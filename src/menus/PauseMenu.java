@@ -20,8 +20,9 @@ public class PauseMenu implements Menu {
 		for(int i = 0; i < 98; i++) {
 			if(Main.inventory.item[i] != -1) {
 				g.drawImage(Main.items[Main.inventory.item[i]], 28 + (i%7)*52, 80 + (i/7)*52 - sY, null);
-				g.drawImage(num[Tools.getDigit(Main.inventory.quantity[i], 1)], 56 + (i%7)*52, 100 + (i/7)*52 - sY, null);
-				g.drawImage(num[Tools.getDigit(Main.inventory.quantity[i], 2)], 40 + (i%7)*52, 100 + (i/7)*52 - sY, null);
+				//might be a problem
+				g.drawImage(num[Main.inventory.quantity[i] / 10], 56 + (i%7)*52, 100 + (i/7)*52 - sY, null);
+				g.drawImage(num[Main.inventory.quantity[i] % 10], 40 + (i%7)*52, 100 + (i/7)*52 - sY, null);
 			}
 		}
 		int gear[] = Main.inventory.gear;
@@ -44,6 +45,18 @@ public class PauseMenu implements Menu {
 			}
 			g.drawImage(marq[timer/8], 16 + (selected%7)*52, 68 + (selected/7)*52 - sY, null);
 		}
+	}
+
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void render(Graphics g) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }
