@@ -1,21 +1,17 @@
 package menus;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.event.KeyEvent;
+import java.awt.Transparency;
 
-import objects.Item;
+import org.newdawn.slick.Color;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
+
+import images.Sprite;
 import main.Main;
 import main.World;
+import objects.Item;
 
-import com.henagongames.game.Menu;
-import com.henagongames.image.Sprite;
-import com.henagongames.image.Transparency;
-import com.henagongames.tools.Particle;
-import com.henagongames.tools.Tools;
-
-public class GameMenu implements Menu{
+public class GameMenu implements Menu {
 
 	public static Image image = World.makeWorldImage(), heart[];
 	public static boolean on;
@@ -23,12 +19,12 @@ public class GameMenu implements Menu{
 	public void reset(){
 		
 	}
+	
 	public GameMenu(){
-		heart = Sprite.getSprites(getClass().getResource("/images/heart.png"), 0, 0, 8, 8, 2, 2);
-		heart = Sprite.resize(heart, 32, 32, Sprite.EDIT_COARSE);
+		heart = Sprite.getSprites("/images/heart.png", 0, 0, 8, 8, 2, 2, 32, 32);
 	}
 	
-	public void draw(Graphics g){
+	public void render(Graphics g){
 		for(int i = 0; i < 250; i++){
 			g.drawImage(Main.textures[Main.getStateAt(Main.player.getX()/32, Main.player.getY()/32, 15, i)],
 					Main.getStateX(Main.player.getX()/32, Main.player.getY()/32, 15, i)*32-Main.sX,
@@ -55,7 +51,7 @@ public class GameMenu implements Menu{
 			}
 		}
 		drawLighting(g);
-		g.drawImage(Main.boxImage[0], 354, 10, null);
+		g.drawImage(Main.boxImage[0], 354, 10);
 		int x = 10;
 		for(int i = 0; i < Main.player.getFull(); i++){
 			g.drawImage(heart[0], x, 10, null);

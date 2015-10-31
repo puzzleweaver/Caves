@@ -1,8 +1,5 @@
 package main;
 
-import java.awt.Image;
-import java.awt.image.BufferedImage;
-
 public class World {
 	
 	private final static int STONE = 0, SEED = -1, SPACE = -2, CHEST = -3, POT = -4, BARREL = -5;
