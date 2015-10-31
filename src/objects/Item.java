@@ -1,16 +1,13 @@
 package objects;
 
-import java.awt.Graphics;
-import java.awt.Image;
 
 import main.Main;
 
-import com.henagongames.game.Element;
-import com.henagongames.geometry.Simple;
-import com.henagongames.tools.Tools;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 
-public class Item extends Element{
-
+public class Item extends Element {
+	
 	int timer = 0, ID = 0;
 	private Image image;
 	private boolean done, caught;
@@ -25,7 +22,7 @@ public class Item extends Element{
 	public void move(){
 		timer++;
 		if(!Main.inventory.full()){
-			int dist = (int) Tools.getDistance(x, y, Main.player.getX(), Main.player.getY());
+			int dist = (int) Math.hypot(y-Main.player.getY(), x-Main.player.getX());
 			if(dist <= 70){
 				vs = 0;
 				hs = 0;
@@ -54,14 +51,15 @@ public class Item extends Element{
 				if(Main.getStateAt(getX()/32, getY()/32, 15, i) <= 15){
 					int nX = Main.getStateX(getX()/32, getY()/32, 15, i)*32,
 							nY = Main.getStateY(getX()/32, getY()/32, 15, i)*32;
-					if(Simple.rectRect(x, y, 32, 32, nX, nY, 32, 32)){
+					if(Simple.rectRect(x, y, 32, 32, nX, nY, 32, 32)
+							) {
 						y = nY-32;
 						vs = 0;
 					}
 				}
 			}
 		}
-		if(timer == 10000 || caught && Tools.getDistance(x, y, Main.player.getX(), Main.player.getY()) <= 10){
+		if(timer == 10000 || caught && Math.hypot(y-Main.player.getY(), x-Main.player.getX()) <= 10){
 			done = true;
 		}
 	}
@@ -79,7 +77,7 @@ public class Item extends Element{
 	}
 	
 	public void draw(Graphics g){
-		g.drawImage(image, getX() - Main.sX, getY() - Main.sY, null);
+		g.drawImage(image, getX() - Main.sX, getY() - Main.sY);
 	}
-
+	
 }
