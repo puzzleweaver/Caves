@@ -1,16 +1,13 @@
 package menus;
 
 import org.lwjgl.input.Keyboard;
-import org.lwjgl.input.Mouse;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.geom.Rectangle;
-import org.newdawn.slick.geom.Transform;
-import org.newdawn.slick.svg.Gradient;
-import org.newdawn.slick.svg.RadialGradientFill;
 
 import images.Sprite;
 import main.Input;
 import main.Main;
+import main.World;
 import objects.Item;
 import objects.Simple;
 
@@ -42,11 +39,18 @@ public class GameMenu implements Menu {
 	}
 	
 	public void render(Graphics g){
-		for(int i = 0; i < Main.w*Main.h/33/16; i++){
-			g.drawImage(Sprite.textures[Main.getStateAt(Main.player.getX()/32, Main.player.getY()/32, Main.w/31, i)],
-					Main.getStateX(Main.player.getX()/32, Main.player.getY()/32, Main.w/31, i)*32-Main.sX,
-					Main.getStateY(Main.player.getX()/32, Main.player.getY()/32, Main.w/31, i)*32-Main.sY, null);
+		int x, y;
+		for(int i = -4; i < 8; i++){
+			for(int j = -4; j < 8; j++) {
+				x = ((Main.player.getX())/32+i)*32;
+				y = ((Main.player.getY())/32+j)*32;
+				g.drawImage(Sprite.textures[World.state[Main.player.getX()/32+i][Main.player.getY()/32+j]], x-Main.sX, y-Main.sY);
+			}
 		}
+////			g.drawImage(Sprite.textures[Main.getStateAt(Main.player.getX()/32, Main.player.getY()/32, Main.w/31, i)],
+////					Main.getStateX(Main.player.getX()/32, Main.player.getY()/32, Main.w/31, i)*32-Main.sX,
+////					Main.getStateY(Main.player.getX()/32, Main.player.getY()/32, Main.w/31, i)*32-Main.sY, null);
+//		}
 		for(int i = 0; i < Main.objects.size() && i >= 0; i++){
 			Item d = Main.objects.get(i);
 			d.draw(g);
@@ -69,7 +73,7 @@ public class GameMenu implements Menu {
 		}
 		drawLighting(g);
 		g.drawImage(Sprite.boxImage[0], 354, 10);
-		int x = 10;
+		x = 10;
 		for(int i = 0; i < Main.player.getFull(); i++){
 			g.drawImage(Sprite.heart[0], x, 10, null);
 			x += 32;
@@ -80,7 +84,15 @@ public class GameMenu implements Menu {
 	}
 	
 	public void drawLighting(Graphics g){
-		// do some-thang
+		double d;
+		for(int i = -1; i < Main.w/16+2; i++) {
+			for(int j = -1; j < Main.h/16+3; j++) {
+				d = (i*16-Main.sX%32-Main.w/2)*(i*16-Main.sX%32-Main.w/2) + (j*16-Main.sY%32-Main.h/2)*(j*16-Main.sY%32-Main.h/2);
+				g.setColor(new Color(0, 0, 0, (int) Math.min(255, 0.01*d)));
+				g.fillRect(i*16-Main.sX%32, j*16-Main.sY%32, 16, 16);
+			}
+		}
+		g.setColor(new Color(255, 255, 255, 255));
 	}
 	
 }
