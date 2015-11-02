@@ -1,11 +1,9 @@
 package objects;
 
+import org.newdawn.slick.Graphics;
+
 import images.Sprite;
 import main.Main;
-
-import org.lwjgl.input.Keyboard;
-import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
 
 public class Player extends Element {
 	
@@ -54,8 +52,8 @@ public class Player extends Element {
 	}
 	
 	public void checkCollisions(){ 
-		for(int i = 0; c == 0 && i < Main.enemies.size(); i++){
-			Enemy d = Main.enemies.get(i);
+		for(int i = 0; c == 0 && i < Main.gameMenu.enemies.size(); i++){
+			Enemy d = Main.gameMenu.enemies.get(i);
 			if(Simple.rectRect(d.getX(), d.getY(), 32, 32, x, y, 32, 32)){
 				c = 255;
 				health -= .5;
@@ -139,15 +137,15 @@ public class Player extends Element {
 	}
 	
 	public void render(Graphics g){
-		g.drawImage(Sprite.player[frame], getX()-Main.sX, getY()-Main.sY, null);
-		if(Main.inventory.gear[0] != -1){
-			g.drawImage(Sprite.player[Main.inventory.getGarment(Inventory.EQUIP_HEAD)*14 + frame], getX()-Main.sX, getY()-Main.sY, null);
-		}if(Main.inventory.gear[2] != -1){
-			g.drawImage(Sprite.player[Main.inventory.getGarment(Inventory.EQUIP_TORSO)*14 + frame], getX()-Main.sX, getY()-Main.sY, null);
-		}if(Main.inventory.gear[3] != -1){
-			g.drawImage(Sprite.player[Main.inventory.getGarment(Inventory.EQUIP_FEET)*14 + frame], getX()-Main.sX, getY()-Main.sY, null);
-		}if(Main.inventory.gear[1] != -1){
-			g.drawImage(Sprite.player[Main.inventory.getGarment(Inventory.EQUIP_SHIELD)*14 + frame], getX()-Main.sX, getY()-Main.sY, null);
+		g.drawImage(Sprite.player[frame], getX()-Main.gameMenu.sX, getY()-Main.gameMenu.sY, null);
+		if(Main.gameMenu.inventory.gear[0] != -1){
+			g.drawImage(Sprite.player[Main.gameMenu.inventory.getGarment(Inventory.EQUIP_HEAD)*14 + frame], getX()-Main.gameMenu.sX, getY()-Main.gameMenu.sY, null);
+		}if(Main.gameMenu.inventory.gear[2] != -1){
+			g.drawImage(Sprite.player[Main.gameMenu.inventory.getGarment(Inventory.EQUIP_TORSO)*14 + frame], getX()-Main.gameMenu.sX, getY()-Main.gameMenu.sY, null);
+		}if(Main.gameMenu.inventory.gear[3] != -1){
+			g.drawImage(Sprite.player[Main.gameMenu.inventory.getGarment(Inventory.EQUIP_FEET)*14 + frame], getX()-Main.gameMenu.sX, getY()-Main.gameMenu.sY, null);
+		}if(Main.gameMenu.inventory.gear[1] != -1){
+			g.drawImage(Sprite.player[Main.gameMenu.inventory.getGarment(Inventory.EQUIP_SHIELD)*14 + frame], getX()-Main.gameMenu.sX, getY()-Main.gameMenu.sY, null);
 		}
 	}
 	

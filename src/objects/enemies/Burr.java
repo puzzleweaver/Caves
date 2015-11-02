@@ -16,7 +16,7 @@ public class Burr extends Enemy {
 	}
 
 	public void update() {
-		if(Main.player.getX() > x && hs < 2){
+		if(Main.gameMenu.player.getX() > x && hs < 2){
 			hs+=.1;
 		}else if(hs > -2){
 			hs-=.1;
@@ -64,7 +64,7 @@ public class Burr extends Enemy {
 		if(timer == 12){
 			timer = 0;
 		}
-		g.drawImage(Sprite.enemies[timer/6], getX()-Main.sX, getY()-Main.sY);
+		g.drawImage(Sprite.enemies[timer/6], getX()-Main.gameMenu.sX, getY()-Main.gameMenu.sY);
 	}
 
 	public double getLit() {

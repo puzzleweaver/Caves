@@ -1,7 +1,5 @@
 package main;
 
-import objects.Player;
-
 public class World {
 	
 	private final static int STONE = 0, SEED = -1, SPACE = -2, CHEST = -3, POT = -4, BARREL = -5;
@@ -26,8 +24,6 @@ public class World {
 			state[x][y+1] = SPACE;
 			state[x+1][y+1] = SPACE;
 		}
-		
-		Main.player = new Player(x*32, y*32);
 		
 		//translate simple state values into image indeces
 		for(int i = 0; i < w*h; i++){

@@ -16,7 +16,7 @@ public class Golem extends Enemy{
 	}
 
 	public void update() {
-		if(Main.player.getX() > x && hs < 2){
+		if(Main.gameMenu.player.getX() > x && hs < 2){
 			hs+=.1;
 		}else if(hs > -2){
 			hs-=.1;
@@ -65,9 +65,9 @@ public class Golem extends Enemy{
 			timer = 0;
 		}
 		if(right){
-			g.drawImage(Sprite.enemies[timer/8], getX()-Main.sX, getY()-Main.sY, null);
+			g.drawImage(Sprite.enemies[timer/8], getX()-Main.gameMenu.sX, getY()-Main.gameMenu.sY, null);
 		}else{
-			g.drawImage(Sprite.enemies[4+timer/8], getX()-Main.sX, getY()-Main.sY, null);
+			g.drawImage(Sprite.enemies[4+timer/8], getX()-Main.gameMenu.sX, getY()-Main.gameMenu.sY, null);
 		}
 	}
 

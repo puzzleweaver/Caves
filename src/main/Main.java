@@ -1,6 +1,5 @@
 package main;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 import org.lwjgl.input.Keyboard;
@@ -14,23 +13,13 @@ import images.Sprite;
 import menus.GameMenu;
 import menus.Menu;
 import menus.PauseMenu;
-import objects.Enemy;
-import objects.Inventory;
-import objects.Item;
-import objects.Player;
-import objects.enemies.Burr;
-import objects.enemies.Golem;
-import objects.enemies.Skull;
 
 public class Main extends BasicGame {
 	
-	public static Inventory inventory = new Inventory();
-	public static int sX, sY;
-	public static Menu menu, gameMenu, pauseMenu;
+	public static Menu menu;
+	public static GameMenu gameMenu;
+	public static PauseMenu pauseMenu;
 	public static Random r = new Random();
-	public static Player player;
-	public static ArrayList<Item> objects = new ArrayList<Item>();
-	public static ArrayList<Enemy> enemies  = new ArrayList<Enemy>();
 	public static final int MENU_GAME = 0, MENU_PAUSE = 1, MENU_MAIN = 2;
 //	public static int w = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth(),
 //			h = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight();
@@ -55,14 +44,10 @@ public class Main extends BasicGame {
 	
 	public void init(GameContainer arg0) throws SlickException {
 		Sprite.init();
-		player = new Player(400*32, 400*32);
 		gameMenu = new GameMenu();
 		pauseMenu = new PauseMenu();
 		menu = gameMenu;
 		World.loadWorld();
-		enemies.add(new Skull(player.getX(), player.getY()-100));
-		enemies.add(new Burr(player.getX(), player.getY()+288));
-		enemies.add(new Golem(player.getX(), player.getY()+200));
 	}
 	
 	public void update(GameContainer arg0, int arg1) throws SlickException {
@@ -93,19 +78,6 @@ public class Main extends BasicGame {
 	public static int getStateY(int x, int y, int w, int i){
 		int nY = y - w/2;
 		return nY + (i/w);
-	}
-	
-	public static void scroll(){
-		if(player.getX()+16-sX >= w/2){
-			sX = player.getX()+16-w/2;
-		}else if(player.getX()+16-sX <= w/2){
-			sX = player.getX()+16-w/2;
-		}
-		if(player.getY()+16-sY >= h/2){
-			sY = player.getY()+16-h/2;
-		}else if(player.getY()+16-sY <= h/2){
-			sY = player.getY()+16-h/2;
-		}
 	}
 	
 	public void render(GameContainer arg0, Graphics g) throws SlickException {

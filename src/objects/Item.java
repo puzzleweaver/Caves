@@ -19,8 +19,8 @@ public class Item extends Element {
 	
 	public void move(){
 		timer++;
-		if(!Main.inventory.full()){
-			int dist = (int) Math.hypot(y-Main.player.getY(), x-Main.player.getX());
+		if(!Main.gameMenu.inventory.full()){
+			int dist = (int) Math.hypot(y-Main.gameMenu.player.getY(), x-Main.gameMenu.player.getX());
 			if(dist <= 70){
 				vs = 0;
 				hs = 0;
@@ -41,7 +41,7 @@ public class Item extends Element {
 	}
 	
 	public void checkCollisions(){
-		if(Main.inventory.full()){
+		if(Main.gameMenu.inventory.full()){
 			caught = false;
 		}
 		if(!caught){
@@ -57,7 +57,7 @@ public class Item extends Element {
 				}
 			}
 		}
-		if(timer == 10000 || caught && Math.hypot(y-Main.player.getY(), x-Main.player.getX()) <= 10){
+		if(timer == 10000 || caught && Math.hypot(y-Main.gameMenu.player.getY(), x-Main.gameMenu.player.getX()) <= 10){
 			done = true;
 		}
 	}
@@ -75,7 +75,7 @@ public class Item extends Element {
 	}
 	
 	public void draw(Graphics g){
-		g.drawImage(Sprite.items[ID], getX() - Main.sX, getY() - Main.sY);
+		g.drawImage(Sprite.items[ID], getX() - Main.gameMenu.sX, getY() - Main.gameMenu.sY);
 	}
 	
 }
