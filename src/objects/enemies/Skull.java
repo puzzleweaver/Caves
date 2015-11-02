@@ -13,9 +13,9 @@ public class Skull extends Enemy{
 		}
 
 		public void update() {
-			double l = Math.pow((Main.player.x-x)*(Main.player.x-x)+(Main.player.y-y)*(Main.player.y-y), -2.0);
-			x -= (Main.player.x-x)*l;
-			y -= (Main.player.y-y)*l;
+			double l = Math.pow((Main.player.x-x)*(Main.player.x-x)+(Main.player.y-y)*(Main.player.y-y), -0.5);
+			x += (Main.player.x-x)*l;
+			y += (Main.player.y-y)*l;
 		}
 
 		public double getLit() {
@@ -33,9 +33,9 @@ public class Skull extends Enemy{
 				timer = 0;
 			}
 			if(Main.player.getX() >= x){
-				g.drawImage(Sprite.enemies[timer/8], getX()-Main.sX, getY()-Main.sY, null);
+				g.drawImage(Sprite.enemies[timer/8], (int)x-Main.sX, (int)y-Main.sY, null);
 			}else{
-				g.drawImage(Sprite.enemies[4+timer/8], getX()-Main.sX, getY()-Main.sY, null);
+				g.drawImage(Sprite.enemies[4+timer/8], (int)x-Main.sX, (int)y-Main.sY, null);
 			}
 		}
 		

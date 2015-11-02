@@ -48,7 +48,7 @@ public class Player extends Element {
 			hs += .5;
 		}
 		x += hs;
-		//hooks moved in draw method
+		changeFrame();
 	}
 	
 	public void checkCollisions(){
@@ -75,10 +75,8 @@ public class Player extends Element {
 				}else if(Simple.rectRect(x+hs, y+1, 28, 30, nX, nY, 32, 32)){
 					hs = 0;
 					if(x > nX){
-						moveLeft = false;
 						x = nX+32;
 					}else if(x < nX+28){
-						moveRight = false;
 						x = nX-28;
 					}
 				}
@@ -131,7 +129,6 @@ public class Player extends Element {
 	}
 	
 	public void render(Graphics g){
-		changeFrame();
 		g.drawImage(Sprite.player[frame], getX()-Main.sX, getY()-Main.sY, null);
 		if(Main.inventory.gear[0] != -1){
 			g.drawImage(Sprite.player[Main.inventory.getGarment(Inventory.EQUIP_HEAD)*14 + frame], getX()-Main.sX, getY()-Main.sY, null);

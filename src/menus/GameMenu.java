@@ -40,17 +40,13 @@ public class GameMenu implements Menu {
 	
 	public void render(Graphics g){
 		int x, y;
-		for(int i = -4; i < 8; i++){
-			for(int j = -4; j < 8; j++) {
+		for(int i = -Main.w/64-2; i < Main.w/64+2; i++){
+			for(int j = -Main.h/64-2; j < Main.h/64+2; j++) {
 				x = ((Main.player.getX())/32+i)*32;
 				y = ((Main.player.getY())/32+j)*32;
 				g.drawImage(Sprite.textures[World.state[Main.player.getX()/32+i][Main.player.getY()/32+j]], x-Main.sX, y-Main.sY);
 			}
 		}
-////			g.drawImage(Sprite.textures[Main.getStateAt(Main.player.getX()/32, Main.player.getY()/32, Main.w/31, i)],
-////					Main.getStateX(Main.player.getX()/32, Main.player.getY()/32, Main.w/31, i)*32-Main.sX,
-////					Main.getStateY(Main.player.getX()/32, Main.player.getY()/32, Main.w/31, i)*32-Main.sY, null);
-//		}
 		for(int i = 0; i < Main.objects.size() && i >= 0; i++){
 			Item d = Main.objects.get(i);
 			d.draw(g);
@@ -84,15 +80,16 @@ public class GameMenu implements Menu {
 	}
 	
 	public void drawLighting(Graphics g){
-		double d;
-		for(int i = -1; i < Main.w/16+2; i++) {
-			for(int j = -1; j < Main.h/16+3; j++) {
-				d = (i*16-Main.sX%32-Main.w/2)*(i*16-Main.sX%32-Main.w/2) + (j*16-Main.sY%32-Main.h/2)*(j*16-Main.sY%32-Main.h/2);
-				g.setColor(new Color(0, 0, 0, (int) Math.min(255, 0.01*d)));
-				g.fillRect(i*16-Main.sX%32, j*16-Main.sY%32, 16, 16);
-			}
-		}
-		g.setColor(new Color(255, 255, 255, 255));
+//		double d;
+//		for(int i = -1; i < Main.w/16+2; i++) {
+//			for(int j = -1; j < Main.h/16+3; j++) {
+//				d = (i*16-Main.sX%32-Main.w/2)*(i*16-Main.sX%32-Main.w/2) + (j*16-Main.sY%32-Main.h/2)*(j*16-Main.sY%32-Main.h/2);
+//				if(d*0.01 > 255) g.setColor(Color.black);
+//				else g.setColor(new Color(0, 0, 0, (int) Math.min(255, 0.01*d)));
+//				g.fillRect(i*16-Main.sX%32, j*16-Main.sY%32, 16, 16);
+//			}
+//		}
+//		g.setColor(new Color(255, 255, 255, 255));
 	}
 	
 }
