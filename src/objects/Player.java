@@ -3,6 +3,7 @@ package objects;
 import images.Sprite;
 import main.Main;
 
+import org.lwjgl.input.Keyboard;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 
@@ -64,21 +65,25 @@ public class Player extends Element {
 			if(Main.getStateAt(getX()/32, getY()/32, 15, i) <= 15){
 				int nX = Main.getStateX(getX()/32, getY()/32, 15, i)*32,
 						nY = Main.getStateY(getX()/32, getY()/32, 15, i)*32;
-				if(Simple.rectRect(x+1, y+vs, 26, 32, nX, nY, 32, 32)){
+				if(Simple.rectRect(x, y+vs, 28, 32, nX+1, nY, 30, 32)){
 					vs = 0;
 					if(y >= nY){
 						y = nY+32;
-					}else{
+					}else {
 						inAir = false;
 						y = nY-32;
 					}
-				}else if(Simple.rectRect(x+hs, y+1, 28, 30, nX, nY, 32, 32)){
-					hs = 0;
-					if(x > nX){
+				}if(Simple.rectRect(x+hs, y, 28, 32, nX, nY+1, 32, 30)){
+					if(vs > 0) {
+						vs = 0;
+						inAir = false;
+					}
+					if(hs < 0){
 						x = nX+32;
-					}else if(x < nX+28){
+					}else if(hs > 0){
 						x = nX-28;
 					}
+					hs = 0;
 				}
 			}
 		}

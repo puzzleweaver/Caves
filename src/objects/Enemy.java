@@ -4,7 +4,7 @@ import org.newdawn.slick.Graphics;
 
 public abstract class Enemy extends Element {
 	
-	public static boolean dead;
+	public boolean dead;
 	public static final int ENEMY_SKULL = 0, ENEMY_GOLEM = 1, ENEMY_FIGHTER = 2;
 	protected int timer;
 	
@@ -18,9 +18,5 @@ public abstract class Enemy extends Element {
 	public abstract void hurt();
 	
 	public abstract double getLit();
-	
-	public boolean isDead(){
-		return dead;
-	}
 	
 }

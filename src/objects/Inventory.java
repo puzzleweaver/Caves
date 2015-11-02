@@ -13,7 +13,7 @@ public class Inventory {
 					ITEM_RED_PANTS = 19, ITEM_BEST_HELMET = 20, ITEM_BEST_SHIRT = 21, ITEM_BEST_PANTS = 22, ITEM_STICK = 31, ITEM_SPEAR = 32, 
 					ITEM_HOOK = 33, ITEM_MAP = 34;
 	public static final int EQUIP_HEAD = 0, EQUIP_SHIELD = 1, EQUIP_TORSO = 2, EQUIP_MELEE = 4, EQUIP_FEET = 3;
-	public static int item[] = new int[100], quantity[] = new int[100],
+	public int item[] = new int[100], quantity[] = new int[100],
 			gear[] = {ITEM_CLOTH_HELMET, -1, ITEM_CLOTH_SHIRT, ITEM_CLOTH_PANTS, ITEM_SPEAR};
 	
 	public Inventory(){
