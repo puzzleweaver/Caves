@@ -12,7 +12,7 @@ public class Player extends Element {
 	private int timer, frame;
 	private boolean moveRight, moveLeft, faceRight, inAir;
 	public static double health = 6;
-	public static int c;
+	public static int c, wall;
 	
 	public Player(int x, int y) {
 		super(x, y);
@@ -22,6 +22,7 @@ public class Player extends Element {
 		moveRight = false;
 		moveLeft = false;
 		inAir = true;
+		wall = 0;
 		if(c > 0){
 			c-=5;
 		}
@@ -52,7 +53,7 @@ public class Player extends Element {
 		changeFrame();
 	}
 	
-	public void checkCollisions(){
+	public void checkCollisions(){ 
 		for(int i = 0; c == 0 && i < Main.enemies.size(); i++){
 			Enemy d = Main.enemies.get(i);
 			if(Simple.rectRect(d.getX(), d.getY(), 32, 32, x, y, 32, 32)){
@@ -80,8 +81,10 @@ public class Player extends Element {
 					}
 					if(hs < 0){
 						x = nX+32;
+						wall = 1;
 					}else if(hs > 0){
 						x = nX-28;
+						wall = -1;
 					}
 					hs = 0;
 				}
@@ -120,6 +123,8 @@ public class Player extends Element {
 			vs = -9;
 			y--;
 			inAir = true;
+			hs = wall*5;
+			wall = 0;
 		}
 	}
 	public void moveLeft(){
