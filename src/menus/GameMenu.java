@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 
-import images.Sprite;
 import main.Input;
 import main.Main;
 import main.World;
@@ -18,6 +17,7 @@ import objects.enemies.Burr;
 import objects.enemies.Golem;
 import objects.enemies.Mushroom;
 import objects.enemies.Skull;
+import res.Sprite;
 
 public class GameMenu implements Menu {
 

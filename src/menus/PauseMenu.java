@@ -2,11 +2,11 @@ package menus;
 
 import org.newdawn.slick.Graphics;
 
-import images.Sprite;
 import main.Input;
 import main.Main;
 import objects.Inventory;
 import objects.Simple;
+import res.Sprite;
 
 public class PauseMenu implements Menu {
 	

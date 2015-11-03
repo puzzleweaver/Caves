@@ -1,7 +1,5 @@
 package main;
 
-import images.Sprite;
-
 import java.awt.Toolkit;
 import java.util.Random;
 
@@ -16,6 +14,8 @@ import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
+
+import res.Sprite;
 
 public class Main extends BasicGame {
 	

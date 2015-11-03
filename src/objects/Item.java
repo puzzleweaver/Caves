@@ -3,7 +3,7 @@ package objects;
 
 import org.newdawn.slick.Graphics;
 
-import images.Sprite;
+import res.Sprite;
 import main.Main;
 
 public class Item extends Element {

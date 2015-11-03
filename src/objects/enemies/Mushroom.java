@@ -2,9 +2,9 @@ package objects.enemies;
 
 import org.newdawn.slick.Graphics;
 
-import images.Sprite;
 import main.Main;
 import objects.Enemy;
+import res.Sprite;
 
 public class Mushroom extends Enemy{
 
