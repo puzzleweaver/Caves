@@ -17,7 +17,7 @@ public class Item extends Element {
 		vs = -5; hs = Main.r.nextInt(9)-4;
 	}
 	
-	public void move(){
+	public void update(){
 		timer++;
 		if(!Main.gameMenu.inventory.full()){
 			int dist = (int) Math.hypot(y-Main.gameMenu.player.getY(), x-Main.gameMenu.player.getX());
@@ -74,7 +74,7 @@ public class Item extends Element {
 		return ID;
 	}
 	
-	public void draw(Graphics g){
+	public void render(Graphics g){
 		g.drawImage(Sprite.items[ID], getX() - Main.gameMenu.sX, getY() - Main.gameMenu.sY);
 	}
 	

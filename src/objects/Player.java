@@ -1,5 +1,6 @@
 package objects;
 
+import org.lwjgl.input.Keyboard;
 import org.newdawn.slick.Graphics;
 
 import images.Sprite;
@@ -16,7 +17,9 @@ public class Player extends Element {
 		super(x, y);
 	}
 	
-	public void reset(){
+	public void update(){
+		
+		// reset all of the frame-by-frame vars
 		moveRight = false;
 		moveLeft = false;
 		inAir = true;
@@ -24,47 +27,60 @@ public class Player extends Element {
 		if(c > 0){
 			c-=5;
 		}
-	}
-	public void move(){
-		if(vs < 10){
-			vs+=.5;
-		}
-		y += vs;
+		
+		// a comment for uniformity's sake
 		checkCollisions();
-		if(moveRight && hs < 4){
+		
+		// handle horizontal motion
+		x += hs;
+		if(Keyboard.isKeyDown(Keyboard.KEY_A))
+			moveLeft();
+		if(Keyboard.isKeyDown(Keyboard.KEY_D))
+			moveRight();
+		if(moveRight && hs < 4) {
 			hs++;
-		}else if(moveLeft && hs > -4){
+		}else if(moveLeft && hs > -4) {
 			hs--;
 		}
-		if(hs > 0){
+		if(hs > 0) {
 			hs -= .5;
-			if(hs < .5){
+			if(hs < .5) {
 				hs = 0;
 			}
-		}else if(hs < 0){
-			if(hs > -.5){
+		}else if(hs < 0) {
+			if(hs > -.5) {
 				hs = 0;
 			}
 			hs += .5;
 		}
-		x += hs;
+		
+		// handle vertical motion
+		if(vs < 10){
+			vs+=.5;
+		}
+		if(Keyboard.isKeyDown(Keyboard.KEY_W))
+			jump();
+		y += vs;
+		
+		// another comment for uniformity's sake
 		changeFrame();
+		
 	}
 	
 	public void checkCollisions(){ 
-		for(int i = 0; c == 0 && i < Main.gameMenu.enemies.size(); i++){
+		for(int i = 0; c == 0 && i < Main.gameMenu.enemies.size(); i++) {
 			Enemy d = Main.gameMenu.enemies.get(i);
-			if(Simple.rectRect(d.getX(), d.getY(), 32, 32, x, y, 32, 32)){
+			if(Simple.rectRect(d.getX(), d.getY(), 32, 32, x, y, 32, 32)) {
 				c = 255;
 				health -= .5;
 				d.hurt();
 			}
 		}
 		for(int i = 0; i < 225; i++){
-			if(Main.getStateAt(getX()/32, getY()/32, 15, i) <= 15){
+			if(Main.getStateAt(getX()/32, getY()/32, 15, i) <= 15) {
 				int nX = Main.getStateX(getX()/32, getY()/32, 15, i)*32,
 						nY = Main.getStateY(getX()/32, getY()/32, 15, i)*32;
-				if(Simple.rectRect(x, y+vs, 28, 32, nX+1, nY, 30, 32)){
+				if(Simple.rectRect(x, y+vs, 28, 32, nX+1, nY, 30, 32)) {
 					vs = 0;
 					if(y >= nY){
 						y = nY+32;
@@ -72,15 +88,15 @@ public class Player extends Element {
 						inAir = false;
 						y = nY-32;
 					}
-				}if(Simple.rectRect(x+hs, y, 28, 32, nX, nY+1, 32, 30)){
+				}if(Simple.rectRect(x+hs, y, 28, 32, nX, nY+1, 32, 30)) {
 					if(vs > 0) {
 						vs = 0;
 						inAir = false;
 					}
-					if(hs < 0){
+					if(hs < 0) {
 						x = nX+32;
 						wall = 1;
-					}else if(hs > 0){
+					}else if(hs > 0) {
 						x = nX-28;
 						wall = -1;
 					}
@@ -121,7 +137,7 @@ public class Player extends Element {
 			vs = -9;
 			y--;
 			inAir = true;
-			hs = wall*5;
+			hs += wall*5;
 			wall = 0;
 		}
 	}
