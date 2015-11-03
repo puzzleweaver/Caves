@@ -64,22 +64,23 @@ public class Player extends Element {
 		
 		// another comment for uniformity's sake
 		changeFrame();
+		changeFrame();
 		
 	}
 	
 	public void checkCollisions(){ 
 		for(int i = 0; c == 0 && i < Main.gameMenu.enemies.size(); i++) {
 			Enemy d = Main.gameMenu.enemies.get(i);
-			if(Simple.rectRect(d.getX(), d.getY(), 32, 32, x, y, 32, 32)) {
+			if(Simple.rectRect(d.x, d.y, 32, 32, x, y, 32, 32)) {
 				c = 255;
 				health -= .5;
 				d.hurt();
 			}
 		}
 		for(int i = 0; i < 225; i++){
-			if(Main.getStateAt(getX()/32, getY()/32, 15, i) <= 15) {
-				int nX = Main.getStateX(getX()/32, getY()/32, 15, i)*32,
-						nY = Main.getStateY(getX()/32, getY()/32, 15, i)*32;
+			if(Main.getStateAt((int)x/32, (int)y/32, 15, i) <= 15) {
+				int nX = Main.getStateX((int)x/32, (int)y/32, 15, i)*32,
+						nY = Main.getStateY((int)x/32, (int)y/32, 15, i)*32;
 				if(Simple.rectRect(x, y+vs, 28, 32, nX+1, nY, 30, 32)) {
 					vs = 0;
 					if(y >= nY){
@@ -153,15 +154,15 @@ public class Player extends Element {
 	}
 	
 	public void render(Graphics g){
-		g.drawImage(Sprite.player[frame], getX()-Main.gameMenu.sX, getY()-Main.gameMenu.sY, null);
+		g.drawImage(Sprite.player[frame], (int)x-Main.gameMenu.sX, (int)y-Main.gameMenu.sY, null);
 		if(Main.gameMenu.inventory.gear[0] != -1){
-			g.drawImage(Sprite.player[Main.gameMenu.inventory.getGarment(Inventory.EQUIP_HEAD)*14 + frame], getX()-Main.gameMenu.sX, getY()-Main.gameMenu.sY, null);
+			g.drawImage(Sprite.player[Main.gameMenu.inventory.getGarment(Inventory.EQUIP_HEAD)*14 + frame], (int)x-Main.gameMenu.sX, (int)y-Main.gameMenu.sY, null);
 		}if(Main.gameMenu.inventory.gear[2] != -1){
-			g.drawImage(Sprite.player[Main.gameMenu.inventory.getGarment(Inventory.EQUIP_TORSO)*14 + frame], getX()-Main.gameMenu.sX, getY()-Main.gameMenu.sY, null);
+			g.drawImage(Sprite.player[Main.gameMenu.inventory.getGarment(Inventory.EQUIP_TORSO)*14 + frame], (int)x-Main.gameMenu.sX, (int)y-Main.gameMenu.sY, null);
 		}if(Main.gameMenu.inventory.gear[3] != -1){
-			g.drawImage(Sprite.player[Main.gameMenu.inventory.getGarment(Inventory.EQUIP_FEET)*14 + frame], getX()-Main.gameMenu.sX, getY()-Main.gameMenu.sY, null);
+			g.drawImage(Sprite.player[Main.gameMenu.inventory.getGarment(Inventory.EQUIP_FEET)*14 + frame], (int)x-Main.gameMenu.sX, (int)y-Main.gameMenu.sY, null);
 		}if(Main.gameMenu.inventory.gear[1] != -1){
-			g.drawImage(Sprite.player[Main.gameMenu.inventory.getGarment(Inventory.EQUIP_SHIELD)*14 + frame], getX()-Main.gameMenu.sX, getY()-Main.gameMenu.sY, null);
+			g.drawImage(Sprite.player[Main.gameMenu.inventory.getGarment(Inventory.EQUIP_SHIELD)*14 + frame], (int)x-Main.gameMenu.sX, (int)y-Main.gameMenu.sY, null);
 		}
 	}
 	

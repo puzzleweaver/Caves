@@ -9,11 +9,4 @@ public class Element {
 		this.y = y;
 	}
 	
-	public int getX() {
-		return (int) x;
-	}
-	public int getY() {
-		return (int) y;
-	}
-	
 }
