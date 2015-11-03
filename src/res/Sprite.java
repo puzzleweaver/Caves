@@ -8,7 +8,7 @@ public class Sprite {
 
 	public static Image[] heart, player, marq, pauseNum, boxImage, items, textures, playButton,
 			enemies;
-	public static Image pauseMenu, title;
+	public static Image pauseMenu, title, mainMenuBackground;
 	
 	public static void init() {
 		heart = Sprite.getSprites("res/heart.png", 8, 8, 2, 2);
@@ -20,8 +20,7 @@ public class Sprite {
 		items = Sprite.getSprites("res/items.png", 8, 8, 35, 6);
 		textures = Sprite.getSprites("res/oWImages.png", 8, 8, 38, 8);
 		enemies = Sprite.getSprites("res/enemies.png", 8, 8, 48, 8);
-		title = Sprite.getSpritesNoScale("res/title.png", 192, 64, 1, 1)[0];
-		playButton = Sprite.getSpritesNoScale("res/playButton.png", 192, 64, 2, 1);
+		mainMenuBackground = Sprite.getSprites("res/oWImages.png", 16, 16, 1, 1)[0];
 	}
 
 	private static Image[] getSprites(String ref, int w, int h, int numSprites, int perRow) {

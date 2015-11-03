@@ -16,7 +16,7 @@ import res.Sprite;
 
 public class MainMenu implements Menu {
 	
-	int offset = 0;
+	int offsetX = 0, offsetY = 0;
 	String name = "";
 	
 	TrueTypeFont fippsTTF = null;
@@ -35,10 +35,11 @@ public class MainMenu implements Menu {
 	
 	public void render(Graphics g) {
 		//scrolling background of stone
-		for(int i = 0; i <= Main.w/32+1; i++) {
-			for(int j = 0; j <= Main.h/32+1; j++) {
-				Image stoneTex = Sprite.textures[0]; //change this however necessary to make it look smoother
-				g.drawImage(stoneTex, i*32, j*32-offset);
+		int imgWidth = Sprite.mainMenuBackground.getWidth();
+		int imgHeight = Sprite.mainMenuBackground.getHeight();
+		for(int i = 0; i <= Main.w/imgWidth+1; i++) {
+			for(int j = 0; j <= Main.h/imgHeight+1; j++) {
+				g.drawImage(Sprite.mainMenuBackground, i*imgWidth-offsetX, j*imgHeight-offsetY);
 			}
 		}
 		//title
@@ -47,9 +48,9 @@ public class MainMenu implements Menu {
 		g.setColor(Color.black);
 		g.drawString("Caves", Main.w/2 - fippsTTFBig.getWidth("Caves")/2, Main.h/4);
 		//play button
-		g.setColor(isPlayButtonHovered() ? Color.red : Color.blue);
+		Color buttonColor = new Color(0, 102, 153).darker(0.25f);
+		g.setColor(isPlayButtonHovered() ? buttonColor : buttonColor.darker(0.5f));
 		g.drawString("Play", Main.w/2 - fippsTTFBig.getWidth("Play")/2, Main.h/2);
-		;
 		//name
 		g.setFont(fippsTTF);
 		g.setColor(Color.black);
@@ -57,14 +58,19 @@ public class MainMenu implements Menu {
 		g.setColor(Color.green.darker(0.75f));
 		g.drawString(name, Main.w/2 - (fippsTTF.getWidth(name) / 2), 3*Main.h/4 + 30);
 		//generate button
-		Color color = new Color(0, 102, 153);
-		g.setColor(isGenerateButtonHovered() ? color : color.darker(0.5f));
+		g.setColor(isGenerateButtonHovered() ? buttonColor : buttonColor.darker(0.5f));
 		g.drawString("Generate", Main.w/2 - fippsTTF.getWidth("Generate")/2, 3*Main.h/4 + 60);
 	}
 	
 	public void update() {
-		offset++;
-		offset %= 32;
+		//scroll stone background
+		offsetX++;
+		offsetY++;
+		int imgWidth = Sprite.mainMenuBackground.getWidth();
+		int imgHeight = Sprite.mainMenuBackground.getHeight();
+		offsetX %= imgWidth;
+		offsetY %= imgHeight;
+		//react to buttons being pressed
 		if(Input.mouseButtonPressed(0)) {
 			if(isPlayButtonHovered())
 				Main.menu = Main.gameMenu;
