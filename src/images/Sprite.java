@@ -4,9 +4,9 @@ import org.newdawn.slick.Image;
 
 public class Sprite {
 
-	public static Image[] heart, player, marq, pauseNum, boxImage, items, textures, particles,
+	public static Image[] heart, player, marq, pauseNum, boxImage, items, textures, particles, playButton,
 			enemies;
-	public static Image pauseMenu;
+	public static Image pauseMenu, title;
 	
 	public static void init() {
 		heart = Sprite.getSprites("images/heart.png", 8, 8, 2, 2, 32, 32);
@@ -19,6 +19,8 @@ public class Sprite {
 		textures = Sprite.getSprites("images/oWImages.png", 8, 8, 38, 8, 32, 32);
 		particles = Sprite.getSprites("images/parts.png", 4, 4, 6, 4, 8, 8);
 		enemies = Sprite.getSprites("images/enemies.png", 8, 8, 48, 8, 32, 32);
+		title = Sprite.getSprites("images/title.png", 192, 64, 1, 1, 192, 64)[0];
+		playButton = Sprite.getSprites("images/playButton.png", 192, 64, 2, 1, 192, 64);
 	}
 	
 	private static Image[] getSprites(String ref, int w, int h, int numSprites, int perRow, int nw, int nh) {
