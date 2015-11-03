@@ -1,6 +1,6 @@
 package objects;
 
-import images.Sprite;
+import res.Sprite;
 import main.Main;
 import menus.PauseMenu;
 

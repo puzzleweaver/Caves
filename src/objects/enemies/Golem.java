@@ -2,10 +2,10 @@ package objects.enemies;
 
 import org.newdawn.slick.Graphics;
 
-import images.Sprite;
 import main.Main;
 import objects.Enemy;
 import objects.Simple;
+import res.Sprite;
 
 public class Golem extends Enemy{
 

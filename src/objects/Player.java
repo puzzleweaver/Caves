@@ -3,7 +3,7 @@ package objects;
 import org.lwjgl.input.Keyboard;
 import org.newdawn.slick.Graphics;
 
-import images.Sprite;
+import res.Sprite;
 import main.Main;
 
 public class Player extends Element {

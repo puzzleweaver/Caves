@@ -1,7 +1,5 @@
 package main;
 
-import images.Sprite;
-
 import java.awt.Toolkit;
 import java.util.Random;
 
@@ -17,6 +15,8 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 
+import res.Sprite;
+
 public class Main extends BasicGame {
 	
 	public static Menu menu;
@@ -27,7 +27,7 @@ public class Main extends BasicGame {
 	public static final int MENU_GAME = 0, MENU_PAUSE = 1, MENU_MAIN = 2;
 	public static int w = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth(),
 			h = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight();
-	public static double scale = 4;
+	public static double scale = 8;
 //	public static int w = 600, h = 600;
 	
 	public static void main(String[] args) {
