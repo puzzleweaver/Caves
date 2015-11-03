@@ -6,9 +6,9 @@ import main.Main;
 
 public class Sprite {
 
-	public static Image[] heart, player, marq, pauseNum, boxImage, items, textures, particles,
+	public static Image[] heart, player, marq, pauseNum, boxImage, items, textures, playButton,
 			enemies;
-	public static Image pauseMenu;
+	public static Image pauseMenu, title;
 	
 	public static void init() {
 		heart = Sprite.getSprites("images/heart.png", 8, 8, 2, 2);
@@ -20,6 +20,8 @@ public class Sprite {
 		items = Sprite.getSprites("images/items.png", 8, 8, 35, 6);
 		textures = Sprite.getSprites("images/oWImages.png", 8, 8, 38, 8);
 		enemies = Sprite.getSprites("images/enemies.png", 8, 8, 48, 8);
+		playButton = enemies;
+		title = enemies[0];
 	}
 	
 	private static Image[] getSprites(String ref, int w, int h, int numSprites, int perRow) {

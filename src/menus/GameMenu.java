@@ -77,7 +77,7 @@ public class GameMenu implements Menu {
 	}
 	
 	public void render(Graphics g){
-		
+		g.setColor(Color.white);
 		// render terrain
 		int x, y;
 		int begI = (int) (-Main.w/16.0/Main.scale-2.0), endI = -begI,

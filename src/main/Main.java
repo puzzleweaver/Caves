@@ -1,7 +1,14 @@
 package main;
 
+import images.Sprite;
+
 import java.awt.Toolkit;
 import java.util.Random;
+
+import menus.GameMenu;
+import menus.MainMenu;
+import menus.Menu;
+import menus.PauseMenu;
 
 import org.lwjgl.input.Keyboard;
 import org.newdawn.slick.AppGameContainer;
@@ -10,16 +17,12 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 
-import images.Sprite;
-import menus.GameMenu;
-import menus.Menu;
-import menus.PauseMenu;
-
 public class Main extends BasicGame {
 	
 	public static Menu menu;
 	public static GameMenu gameMenu;
 	public static PauseMenu pauseMenu;
+	public static MainMenu mainMenu;
 	public static Random r = new Random();
 	public static final int MENU_GAME = 0, MENU_PAUSE = 1, MENU_MAIN = 2;
 	public static int w = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth(),
@@ -48,7 +51,8 @@ public class Main extends BasicGame {
 		Sprite.init();
 		gameMenu = new GameMenu();
 		pauseMenu = new PauseMenu();
-		menu = gameMenu;
+		mainMenu = new MainMenu();
+		menu = mainMenu;
 		World.loadWorld();
 	}
 	
@@ -60,16 +64,15 @@ public class Main extends BasicGame {
 	
 	public static void setState(int x, int y, int w, int i, int nS){
 		int nX = x - w/2, nY = y - w/2;
-		try{
+		try {
 			World.state[nX + (i%w)][nY + (i/w)] = nS;
-		}catch(Exception e){
-		}
+		}catch(Exception e) {}
 	}
 	public static int getStateAt(int x, int y, int w, int i){
 		int nX = x - w/2, nY = y - w/2;
-		try{
+		try {
 			return World.state[nX + (i%w)][nY + (i/w)];
-		}catch(Exception e){
+		}catch(Exception e) {
 			return 0;
 		}
 	}
