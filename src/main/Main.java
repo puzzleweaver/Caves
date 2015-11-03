@@ -1,5 +1,6 @@
 package main;
 
+import java.awt.Toolkit;
 import java.util.Random;
 
 import org.lwjgl.input.Keyboard;
@@ -21,14 +22,14 @@ public class Main extends BasicGame {
 	public static PauseMenu pauseMenu;
 	public static Random r = new Random();
 	public static final int MENU_GAME = 0, MENU_PAUSE = 1, MENU_MAIN = 2;
-//	public static int w = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth(),
-//			h = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight();
-	public static int w = 600, h = 600;
+	public static int w = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth(),
+			h = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight();
+//	public static int w = 600, h = 600;
 	
 	public static void main(String[] args) {
 		try {
 			AppGameContainer app = new AppGameContainer(new Main());
-			app.setDisplayMode(w, h, false);
+			app.setDisplayMode(w, h, true);
 			app.setMinimumLogicUpdateInterval(15);
 			app.setVSync(true);
 			//nothing after app.start() runs

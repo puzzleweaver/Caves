@@ -16,7 +16,7 @@ public class Burr extends Enemy {
 	}
 
 	public void update() {
-		if(Main.gameMenu.player.getX() > x && hs < 2){
+		if(Main.gameMenu.player.x > x && hs < 2){
 			hs+=.1;
 		}else if(hs > -2){
 			hs-=.1;
@@ -36,9 +36,9 @@ public class Burr extends Enemy {
 	
 	private void checkCollisions(){
 		for(int i = 0; i < 225; i++){
-			if(Main.getStateAt(getX()/32, getY()/32, 15, i) <= 15){
-				int nX = Main.getStateX(getX()/32, getY()/32, 15, i)*32,
-						nY = Main.getStateY(getX()/32, getY()/32, 15, i)*32;
+			if(Main.getStateAt((int)x/32, (int)y/32, 15, i) <= 15){
+				int nX = Main.getStateX((int)x/32, (int)y/32, 15, i)*32,
+						nY = Main.getStateY((int)x/32, (int)y/32, 15, i)*32;
 				if(Simple.rectRect(x+2, y+vs, 28, 32, nX, nY, 32, 32)){
 					vs = 0;
 					if(y >= nY){
@@ -64,7 +64,7 @@ public class Burr extends Enemy {
 		if(timer == 12){
 			timer = 0;
 		}
-		g.drawImage(Sprite.enemies[timer/6], getX()-Main.gameMenu.sX, getY()-Main.gameMenu.sY);
+		g.drawImage(Sprite.enemies[timer/6], (int)x-Main.gameMenu.sX, (int)y-Main.gameMenu.sY);
 	}
 
 	public double getLit() {

@@ -23,7 +23,8 @@ public class Mushroom extends Enemy{
 		if(timer == 32){
 			timer = 0;
 		}
-		g.drawImage(Sprite.enemies[timer/16], getX()-Main.gameMenu.sX, getY()-Main.gameMenu.sY, null);
+		// 0 3 1 3
+		g.drawImage(Sprite.enemies[24+timer/16], (int)x-Main.gameMenu.sX, (int)y-Main.gameMenu.sY, null);
 	}
 
 	public double getLit() {
