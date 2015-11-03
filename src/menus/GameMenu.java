@@ -80,15 +80,16 @@ public class GameMenu implements Menu {
 		
 		// render terrain
 		int x, y;
-		int begI = -Main.w/64-2, endI = -begI,
-				begJ = -Main.h/64-2, endJ = -begJ+1;
+		int begI = (int) (-Main.w/16.0/Main.scale-2.0), endI = -begI,
+				begJ = (int) (-Main.h/16.0/Main.scale-2.0), endJ = -begJ+1;
 		for(int i = begI; i < endI; i++){
 			for(int j = begJ; j < endJ; j++) {
 				x = ((int)(player.x/32+i)*32);
 				y = ((int)(player.y/32+j)*32);
-				g.drawImage(Sprite.textures[World.state[(int)player.x/32+i][(int)player.y/32+j]], x-sX, y-sY);
+				g.drawImage(Sprite.textures[World.state[(int)player.x/32+i][(int)player.y/32+j]], (int) (x*0.25*Main.scale)-sX, (int) (y*0.25*Main.scale)-sY);
 			}
 		}
+		g.setColor(Color.white);
 		
 		// render items in the overworld
 		for(int i = 0; i < objects.size() && i >= 0; i++){
@@ -143,16 +144,16 @@ public class GameMenu implements Menu {
 	
 	public void scroll(){
 		
-		if(player.x+16-sX >= Main.w/2){
-			sX = (int)player.x+16-Main.w/2;
-		}else if(player.x+16-sX <= Main.w/2){
-			sX = (int)player.x+16-Main.w/2;
+		if(player.x*0.25*Main.scale+4*Main.scale-sX >= Main.w/2){
+			sX = (int)(player.x*0.25*Main.scale+4*Main.scale-Main.w/2);
+		}else if(player.x*0.25*Main.scale+4*Main.scale-sX <= Main.w/2){
+			sX = (int)(player.x*0.25*Main.scale+4*Main.scale-Main.w/2);
 		}
 		
-		if(player.y+16-sY >= Main.h/2){
-			sY = (int)player.y+16-Main.h/2;
-		}else if(player.y+16-sY <= Main.h/2){
-			sY = (int)player.y+16-Main.h/2;
+		if(player.y*0.25*Main.scale+4*Main.scale-sY >= Main.h/2){
+			sY = (int)(player.y*0.25*Main.scale+4*Main.scale-Main.h/2);
+		}else if(player.y*0.25*Main.scale+4*Main.scale-sY <= Main.h/2){
+			sY = (int)(player.y*0.25*Main.scale+4*Main.scale-Main.h/2);
 		}
 		
 	}

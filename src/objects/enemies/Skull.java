@@ -32,9 +32,9 @@ public class Skull extends Enemy{
 				timer = 0;
 			}
 			if(Main.gameMenu.player.x >= x){
-				g.drawImage(Sprite.enemies[timer/8], (int)x-Main.gameMenu.sX, (int)y-Main.gameMenu.sY, null);
+				g.drawImage(Sprite.enemies[timer/8], (int)(x*Main.scale*0.25)-Main.gameMenu.sX, (int)(y*Main.scale*0.25)-Main.gameMenu.sY);
 			}else{
-				g.drawImage(Sprite.enemies[4+timer/8], (int)x-Main.gameMenu.sX, (int)y-Main.gameMenu.sY, null);
+				g.drawImage(Sprite.enemies[4+timer/8], (int)(x*Main.scale*0.25)-Main.gameMenu.sX, (int)(y*Main.scale*0.25)-Main.gameMenu.sY);
 			}
 		}
 		
