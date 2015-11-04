@@ -31,9 +31,9 @@ public class GameMenu implements Menu {
 		
 		player = new Player(World.w*16, World.h*16);
 		enemies.add(new Skull((int)player.x, (int)player.y-100));
-		enemies.add(new Burr((int)player.x, (int)player.y+288));
-		enemies.add(new Golem((int)player.x, (int)player.y+200));
-		enemies.add(new Mushroom((int)player.x, (int)player.y*32));
+		enemies.add(new Burr((int)player.x, (int)player.y));
+		enemies.add(new Golem((int)player.x, (int)player.y));
+		enemies.add(new Mushroom((int)player.x, (int)player.y));
 		
 	}
 	
@@ -44,9 +44,7 @@ public class GameMenu implements Menu {
 			d = objects.get(i);
 			d.update();
 			if(d.done() > 0){
-				if(d.done() == 2){
-					inventory.add(d);
-				}
+				inventory.add(d);
 				objects.remove(i);
 				i--;
 			}
@@ -62,14 +60,14 @@ public class GameMenu implements Menu {
 		}
 		
 		if(Input.mouseButtonPressed(0)){
-			int x = (Input.mouseX()+sX)/32, y = (Input.mouseY()+sY)/32;
-			if(Simple.pointRect(Input.mouseX(), Input.mouseY(), Main.w-46, 10, 36, 36)){
+			double x = (Input.mouseX()+sX)/(Main.scale*8), y = (Input.mouseY()+sY)/(Main.scale*8);
+			if(Simple.pointRect(Input.mouseX(), Input.mouseY(), Main.w-Main.scale*13, Main.scale, Main.scale*12, Main.scale*12)){
 				Main.menu = Main.pauseMenu;
-			}else if(World.state[x][y] == 33){
+			}else if(World.state[(int)x][(int)y] == 33){
 				for(int i = 0; i < Main.r.nextInt(5)+2; i++){
-					objects.add(new Item(x*32, y*32, Inventory.chestSpawn()));
+					objects.add(new Item((int)x*32, (int)y*32, Inventory.chestSpawn()));
 				}
-				World.state[x][y] = 32;
+				World.state[(int)x][(int)y] = 32;
 			}
 		}
 		
@@ -106,7 +104,7 @@ public class GameMenu implements Menu {
 		drawLighting(g);
 		
 		// draw player health and pause button
-		g.drawImage(Sprite.boxImage[0], Main.w-46, 10);
+		g.drawImage(Sprite.boxImage[0], Main.w-(int)(Main.scale*13), (int)Main.scale);
 		x = 10;
 		for(int i = 0; i < player.getFull(); i++){
 			g.drawImage(Sprite.heart[0], x, 10, null);
@@ -119,23 +117,19 @@ public class GameMenu implements Menu {
 	}
 	
 	public void drawLighting(Graphics g){
-		
+//		
 //		double d;
 //		Enemy e;
 //		
-//		for(int i = -1; i < Main.w/16+3; i++) {
-//			for(int j = -1; j < Main.h/16+3; j++) {
+//		for(int i = -1; i < Main.w*0.5/Main.scale+3; i++) {
+//			for(int j = -1; j < Main.h*0.5/Main.scale+3; j++) {
 //				
 //				// calculate lit entity closest to the shading cell
-//				d = (i*16-sX%32-Main.w/2)*(i*16-sX%32-Main.w/2) + (j*16-sY%32-Main.h/2)*(j*16-sY%32-Main.h/2);
-//				for(int a = 0; a < enemies.size(); a++) {
-//					e = enemies.get(a);
-//					d = Math.min(d, 2.0*((e.x-sX+sX%32-i*16)*(e.x-sX+sX%32-i*16) + (e.y-sY+sY%32-j*16)*(e.y-sY+sY%32-j*16)));
-//				}
+//				d = (i*Main.scale*4-sX%(Main.scale*8)-Main.w/2)*(i*Main.scale*4-sX%(Main.scale*8)-Main.w/2) + (j*Main.scale*4-sY%(Main.scale*8)-Main.h/2)*(j*Main.scale*4-sY%(Main.scale*8)-Main.h/2);
 //				
 //				// set color and draw shading cell
 //				g.setColor(new Color(0, 0, 0, (int) Math.min(255, 0.005*d)));
-//				g.fillRect(i*16-sX%32, j*16-sY%32, 16, 16);
+//				g.fillRect((int) (i*Main.scale*4-sX%(Main.scale*8)), (int) (j*Main.scale*4-sY%(Main.scale*8)), (int) (Main.scale*4), (int)(Main.scale*4));
 //			}
 //		}
 //		g.setColor(new Color(255, 255, 255, 255));

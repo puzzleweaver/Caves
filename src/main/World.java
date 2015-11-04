@@ -25,6 +25,17 @@ public class World {
 			state[x+1][y+1] = SPACE;
 		}
 		
+		int chests = 100;
+		for(int i = 0; i < chests; i++) {
+			while(state[x][y+1] == SPACE)
+				y++;
+			state[x][y] = CHEST;
+			do {
+				x = Main.r.nextInt(w);
+				y = Main.r.nextInt(h);
+			} while(state[x][y] != SPACE);
+		}
+		
 		//translate simple state values into image indeces
 		for(int i = 0; i < w*h; i++){
 			x = i%w;

@@ -64,7 +64,6 @@ public class Player extends Element {
 		
 		// another comment for uniformity's sake
 		changeFrame();
-		changeFrame();
 		
 	}
 	

@@ -59,15 +59,15 @@ public class Golem extends Enemy{
 	}
 
 	public void render(Graphics g) {
-		update();
+//		update();
 		timer++;
 		if(timer == 32){
 			timer = 0;
 		}
 		if(right){
-			g.drawImage(Sprite.enemies[timer/8], (int)x-Main.gameMenu.sX, (int)y-Main.gameMenu.sY, null);
+			g.drawImage(Sprite.enemies[8+timer/8], (int)(x*0.25*Main.scale)-Main.gameMenu.sX, (int)(y*0.25*Main.scale)-Main.gameMenu.sY, null);
 		}else{
-			g.drawImage(Sprite.enemies[4+timer/8], (int)x-Main.gameMenu.sX, (int)y-Main.gameMenu.sY, null);
+			g.drawImage(Sprite.enemies[12+timer/8], (int)(x*0.25*Main.scale)-Main.gameMenu.sX, (int)(y*0.25*Main.scale)-Main.gameMenu.sY, null);
 		}
 	}
 

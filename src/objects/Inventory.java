@@ -63,16 +63,16 @@ public class Inventory {
 			if(gear[slot] == -1 && ID != -1){
 				quantity[ID] = 0;
 			}else{
-				quantity[PauseMenu.selected] = 1;
+				quantity[Main.pauseMenu.selected] = 1;
 			}
 			int itm = gear[slot];
 			gear[slot] = ID;
-			item[PauseMenu.selected] = itm;
+			item[Main.pauseMenu.selected] = itm;
 		}
-		PauseMenu.selected = -1;
+		Main.pauseMenu.selected = -1;
 	}
 	public void trash(int slot){
-		PauseMenu.selected = -1;
+		Main.pauseMenu.selected = -1;
 		item[slot] = -1;
 		quantity[slot] = 0;
 	}
