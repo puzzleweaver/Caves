@@ -9,7 +9,7 @@ import main.Main;
 public class Item extends Element {
 	
 	int timer = 0, ID = 0;
-	private boolean done;
+	private boolean done, caught;
 	
 	public Item(int x, int y, int ID) {
 		super(x, y);
@@ -19,22 +19,24 @@ public class Item extends Element {
 	
 	public void update(){
 		double dist = Math.hypot(y-Main.gameMenu.player.y, x-Main.gameMenu.player.x);
-		if(dist > 64) {
+		caught |= dist < 64;
+		if(caught) {
+			hs *= 0.9;
+			vs *= 0.9;
+			hs -= (x-Main.gameMenu.player.x)/dist*0.6;
+			vs -= (y-Main.gameMenu.player.y)/dist*0.6;
+		}else {
 			timer++;
+			checkCollisions();
 			if(hs > 0){
 				hs -= .5;
 			}else if(hs < 0){
 				hs += .5;
 			}
+			if(Math.abs(hs) < 0.5) hs = 0;
 			if(vs < 10){
 				vs+=.5;
 			}
-			checkCollisions();
-		}else {
-			hs *= 0.9;
-			vs *= 0.9;
-			hs -= (x-Main.gameMenu.player.x)/dist*0.6;
-			vs -= (y-Main.gameMenu.player.y)/dist*0.6;
 		}
 		x += hs;
 		y += vs;
@@ -46,10 +48,16 @@ public class Item extends Element {
 			if(Main.getStateAt((int)x/32, (int)y/32, 15, i) <= 15){
 				int nX = Main.getStateX((int)x/32, (int)y/32, 15, i)*32,
 						nY = Main.getStateY((int)x/32, (int)y/32, 15, i)*32;
-				if(Simple.rectRect(x+1, y+1, 30, 30, nX, nY, 32, 32)
-					) {
-					y = nY-31;
-					vs = 0.5;
+				if(Simple.rectRect(x, y+vs, 32, 32, nX, nY, 32, 32)) {
+					if(vs != 0.5 && Simple.rectRect(x, y, 32, 32, nX, nY, 32, 32)) {
+						if(x > nX)
+							x = nX+32;
+						else
+							x = nX-32;
+					} else {
+						y = nY-32;
+						vs = 0;
+					}
 				}
 			}
 		}
