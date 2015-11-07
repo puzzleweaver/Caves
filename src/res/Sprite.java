@@ -8,7 +8,7 @@ public class Sprite {
 
 	public static Image[] heart, player, marq, pauseNum, boxImage, items, textures, playButton,
 			enemies;
-	public static Image pauseMenu, title, mainMenuBackground;
+	public static Image pauseMenu, title;
 	
 	public static void init() {
 		heart = Sprite.getSprites("res/heart.png", 8, 8, 2, 2);
@@ -20,7 +20,6 @@ public class Sprite {
 		items = Sprite.getSprites("res/items.png", 8, 8, 35, 6);
 		textures = Sprite.getSprites("res/oWImages.png", 8, 8, 38, 8);
 		enemies = Sprite.getSprites("res/enemies.png", 8, 8, 48, 8);
-		mainMenuBackground = Sprite.getSprites("res/oWImages.png", 16, 16, 1, 1)[0];
 	}
 
 	private static Image[] getSprites(String ref, int w, int h, int numSprites, int perRow) {
@@ -39,20 +38,4 @@ public class Sprite {
 		return imgs;
 	}
 	
-	private static Image[] getSpritesNoScale(String ref, int w, int h, int numSprites, int perRow) {
-		Image img = null;
-		try {
-			img = new Image(ref);
-		}catch(Exception e) {
-			e.printStackTrace();
-			System.err.println("CRITICAL IMAGE LOADING ERROR");
-		}
-		img.setFilter(Image.FILTER_NEAREST);
-		Image[] imgs = new Image[numSprites];
-		for(int i = 0; i < numSprites; i++) {
-			imgs[i] = img.getSubImage((i%perRow)*w, (i/perRow)*h, w, h);
-		}
-		return imgs;
-	}
-
 }

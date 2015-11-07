@@ -5,6 +5,7 @@ import java.io.InputStream;
 
 import main.Input;
 import main.Main;
+import main.World;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
@@ -16,14 +17,18 @@ import res.Sprite;
 
 public class MainMenu implements Menu {
 	
-	int offsetX = 0, offsetY = 0;
+	private int sX = 0, sY = 0;
 	String name = "";
 	
+	// these should go in that variables class when we get a round tuit
 	TrueTypeFont fippsTTF = null;
 	TrueTypeFont fippsTTFBig = null;
 	
+	private int bgWorld[][], bgWorldW, bgWorldH;
+	
 	public MainMenu() {
 		name = NameGenerator.newName();
+		bgWorld = World.loadMainMenuWorld(bgWorldW = 80, bgWorldH = 80);
 		InputStream inputStream = ResourceLoader.getResourceAsStream("res/Fipps-Regular.ttf");
 		Font fipps;
 		try {
@@ -34,12 +39,12 @@ public class MainMenu implements Menu {
 	}
 	
 	public void render(Graphics g) {
-		//scrolling background of stone
-		int imgWidth = Sprite.mainMenuBackground.getWidth();
-		int imgHeight = Sprite.mainMenuBackground.getHeight();
-		for(int i = 0; i <= Main.w/imgWidth+1; i++) {
-			for(int j = 0; j <= Main.h/imgHeight+1; j++) {
-				g.drawImage(Sprite.mainMenuBackground, i*imgWidth-offsetX, j*imgHeight-offsetY);
+		//scrolling world background
+		g.setColor(Color.white);
+		int dsX = (int) (0.125*sX/Main.scale), dsY = (int) (0.125*sY/Main.scale);
+		for(int i = -1; i <= Main.w*0.125/Main.scale+1; i++) {
+			for(int j = -1; j <= Main.h*0.125/Main.scale+1; j++) {
+				g.drawImage(Sprite.textures[bgWorld[(i%bgWorldW+dsX+bgWorldW)%bgWorldW][(j%bgWorldH+dsY+bgWorldH)%bgWorldH]], (int) (Main.scale*8*i-sX%(Main.scale*8)), (int) (Main.scale*8*j-sY%(Main.scale*8)));
 			}
 		}
 		//title
@@ -63,13 +68,9 @@ public class MainMenu implements Menu {
 	}
 	
 	public void update() {
-		//scroll stone background
-		offsetX++;
-		offsetY++;
-		int imgWidth = Sprite.mainMenuBackground.getWidth();
-		int imgHeight = Sprite.mainMenuBackground.getHeight();
-		offsetX %= imgWidth;
-		offsetY %= imgHeight;
+		//scroll background
+		sX++;
+		sY++;
 		//react to buttons being pressed
 		if(Input.mouseButtonPressed(0)) {
 			if(isPlayButtonHovered())

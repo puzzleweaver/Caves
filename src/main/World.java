@@ -44,6 +44,29 @@ public class World {
 		}
 	}
 	
+	public static int[][] loadMainMenuWorld(int w, int h) {
+		int s[][] = new int[w][h];
+		int x = w/2, y = h/2;
+		for(int a = 0; a < 10; a++) {
+			x = Main.r.nextInt(w);
+			y = Main.r.nextInt(h);
+			for(int i = 0; i < 200; i++) {
+				x = (x+Main.r.nextInt(3)+w-1)%w;
+				y = (y+Main.r.nextInt(3)+h-1)%h;
+				s[x][y] = SPACE;
+				s[(x+1)%w][y] = SPACE;
+				s[(x+1)%w][(y+1)%h] = SPACE;
+				s[x][(y+1)%h] = SPACE;
+			}
+		}
+		for(int i = 0; i < w; i++) {
+			for(int j = 0; j < h; j++) {
+				s[i][j] = getIndex(s[i][j]);
+			}
+		}
+		return s;
+	}
+	
 	private static int getIndex(int i){
 		if(i == -1 || i == -2){
 			return 16+Main.r.nextInt(16);
